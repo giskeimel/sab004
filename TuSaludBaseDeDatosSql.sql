@@ -27,7 +27,22 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Cuenta` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (2, 'ManuSaponte', '25872099');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (3, 'RodrigoPerez', '3411112');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (4, 'Franchesco', '95786234');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (5, 'Mariano', '78345986');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (6, 'MathMurdok', '88769236');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (7, 'Pepito123', '97994100');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (8, 'MaclomGraves', '34567810');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (9, 'DarudeSandstorm', '11223345');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (10, 'MarucioMacri', '3456789');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (11, 'Movediza123', '3456810');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (12, 'Marianela4', '3453490');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (13, 'ModoDiabo', 'Skere');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (14, 'Ortencia', 'Ortencia');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (15, 'Army', 'BTS1234');
 
+SELECT * FROM `TuSalud`.`Cuenta` 
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Direccion`
 -- -----------------------------------------------------
@@ -39,7 +54,6 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Direccion` (
   `departamento` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Lugar`
@@ -94,6 +108,16 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Paciente` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (1, 1, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (2, 2, Manuel, Saponte, Naru32_@hotmail.com, 249 246-6578, 2, 2 , 2, 'Le cuesta respirar');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (3, 3, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (4, 4, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (5, 5, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (6, 6, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (7, 7, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (8, 8, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (9, 9, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (10, 10, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
 
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Familiar_a_cargo`
