@@ -2,6 +2,7 @@
 -- 01/18/19 10:12:35
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
+DROP SCHEMA IF EXISTS `TuSalud`;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -14,6 +15,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema TuSalud
 -- -----------------------------------------------------
+
 CREATE SCHEMA IF NOT EXISTS `TuSalud` DEFAULT CHARACTER SET utf8 ;
 USE `TuSalud` ;
 
@@ -27,22 +29,24 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Cuenta` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (2, 'ManuSaponte', '25872099');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (3, 'RodrigoPerez', '3411112');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (4, 'Franchesco', '95786234');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (5, 'Mariano', '78345986');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (6, 'MathMurdok', '88769236');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (7, 'Pepito123', '97994100');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (8, 'MaclomGraves', '34567810');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (9, 'DarudeSandstorm', '11223345');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (10, 'MarucioMacri', '3456789');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (11, 'Movediza123', '3456810');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (12, 'Marianela4', '3453490');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (13, 'ModoDiabo', 'Skere');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (14, 'Ortencia', 'Ortencia');
-INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values (15, 'Army', 'BTS1234');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) values ( 'Pablo', '23409877');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Manu', '25872099');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Rodrigo', '3411112');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Franchesco', '95786234');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Mariano', '78345986');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Mati', '88769236');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Pepito', '97994100');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Graves', '34567810');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Daniela', '11223345');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Marucio', '3456789');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Esther', '3456810');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Andrea', '3453490');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Catalina', '5466213');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Ortencia', '');
+INSERT INTO `TuSalud`.`Cuenta` (id, usuario, contraseña) Values ( 'Florencia', '');
 
-SELECT * FROM `TuSalud`.`Cuenta` 
+SELECT * FROM `TuSalud`.`Cuenta`;
+
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Direccion`
 -- -----------------------------------------------------
@@ -55,6 +59,19 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Direccion` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+INSERT INTO  direccion (numero, calle, piso, departamento) values (125, 'sarmiento', 3, NULL);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (554, '9 de Julio', 2, NULL);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (1230, 'Doering', 1, NULL);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (223, '11 de Septiembre', 2, NULL);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (365, 'Grl.Paz', 1, NULL);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (765, 'misiones', 0, null);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (65, 'alem', 0, null);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (120, 'Brasil', 2, null);
+INSERT INTO  direccion (numero, calle, piso, departamento) values (98, 'Avellaneda', 0, null);
+
+SELECT * FROM `TuSalud`.`Direccion`;
+
+DROP TABLE direccion;
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Lugar`
 -- -----------------------------------------------------
@@ -71,7 +88,15 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Lugar` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO Lugar (nombre, id_Direccion) values ('salita', 1);
+INSERT INTO Lugar (nombre, id_Direccion) values ('salita2', 2);
+INSERT INTO Lugar (nombre, id_Direccion) values ('salita3', 3);
+INSERT INTO Lugar (nombre, id_Direccion) values ('salita4', 4);
+INSERT INTO Lugar (nombre, id_Direccion) values ('salita5', 5);
 
+SELECT * FROM lugar;
+
+DROP TABLE lugar;
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Paciente`
 -- -----------------------------------------------------
@@ -108,17 +133,20 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Paciente` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (1, 1, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (2, 2, Manuel, Saponte, Naru32_@hotmail.com, 249 246-6578, 2, 2 , 2, 'Le cuesta respirar');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (3, 3, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (4, 4, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (5, 5, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (6, 6, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (7, 7, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (8, 8, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (9, 9, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
-INSERT INTO `TuSalud`.`Paciente` (id, historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values (10, 10, Pablo, Andrade, pablo123_@hotmail.com, 249 349-9178, 1, 1 ,1, 'No tiene salvacion');
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_Lugar, id_direccion, id_cuenta, observaciones) Values ( 1, 'Pablo', 'Andrade', 'pablo123_@hotmail.com', '249 349-9178', 1, NULL ,1, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 2, 'Manuel', 'Saponte', 'Naru32_@hotmail.com', '249 246-6578', 2, NULL , 2, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 3, 'Rodrigo', 'Perez', 'rodri_@gmail.com', '249 349-4128', 1, NULL ,3, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 4, 'Francisco', 'Castillo', 'curva_@hotmail.com', '249 349-9178', 3, 7 ,4, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 5, 'Mariano', 'Maceratti', 'Maruhapro_@gmail.com', '249 849-6778', 5, 6 ,5, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 6, 'Mati', 'Serrano', 'WhiteMati_@hotmail.com', '249 123-0976', 2, NULL ,6, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 7, 'Pedro', 'Serrano', 'AmericanPedro@hotmail.com', '249 961-4438', 1, NULL ,7, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 8, 'Malcom', 'Graves', 'Destino@gmail.com', '249 341-9135', 3, NULL ,8, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 9, 'Daniela', 'Guerra', 'pablo123_@hotmail.com', '249 349-9178', 1, 8 ,9, NULL);
+INSERT INTO  Paciente ( historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion, id_cuenta, observaciones) Values ( 10, 'Esther', 'Gonzales', 'pablo123_@hotmail.com', '249 349-9178', 1, 9 ,10, NULL);
 
+DROP TABLE paciente;
+
+SELECT * FROM `TuSalud`.`Paciente`;
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Familiar_a_cargo`
 -- -----------------------------------------------------
@@ -143,7 +171,11 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Familiar_a_cargo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO familiar_a_cargo (nombre, apellido, id_paciente, mi_historia_clinica) values ('Daniel', 'Maceratti', 5, 5);
+INSERT INTO familiar_a_cargo (nombre, apellido, id_paciente, mi_historia_clinica) values ('Adrian', 'Guerra', 9, 9);
+INSERT INTO familiar_a_cargo (nombre, apellido, id_paciente, mi_historia_clinica) values ('Samuel', 'Perez', 3, 3);
 
+SELECT * FROM familiar_a_cargo;
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Especialidad`
 -- -----------------------------------------------------
@@ -324,3 +356,6 @@ values ("clinica", 1);
 
 insert into empleado(legajo_empleado, nombre, apellido, email, telefono, observaciones, id_Direccion, id_Cuenta, id_Lugar)
 values (5, "Juan", "Perez", "empleado@gmail.com", 2494778899, "nada", 1, 1, 1);
+
+
+DROP TABLE `TuSalud`.`Cuenta`
