@@ -221,7 +221,13 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Empleado` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (120, 'Mauricio', 'Gonzalez', 'mauro@hotmail.com', 249349-4489, '', 10, NULL, 1);
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (121, 'Andrea', 'Ameghino', 'Mari@gmail.com', 249344-5687, '', 12, NULL, 2);
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (122, 'Catalina', 'Marcoveccio', 'Cata@gmail.com', 234455-7345, '', 13, NULL, 3);
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (123, 'Ortencia', 'Ramirez', 'flor234@hotmail.com', 249566-9191, '', 14, NULL, 4); 
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (124, 'Florencia', 'Abaccio', 'kyu_56@gmail.com', 249769-8132, '', 15, NULL, 5);
 
+SELECT * FROM empleado;
 -- -----------------------------------------------------
 -- Table `TuSalud`.`Turno`
 -- -----------------------------------------------------
@@ -317,6 +323,8 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`Profesional` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
 
 
 -- -----------------------------------------------------
