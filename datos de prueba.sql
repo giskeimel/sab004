@@ -38,3 +38,10 @@ INSERT INTO paciente(historia_clinica, nombre, apellido, email, telefono, id_lug
 Values (003,'Rodrigo', 'Perez', 'rodri_@gmail.com',154494128, 2, 3 ,3, '...');
 INSERT INTO paciente(historia_clinica, nombre, apellido, email, telefono, id_lugar, id_direccion,id_cuenta, observaciones) 
 Values (004,'Francisco', 'Castillo', 'curva_@hotmail.com',154499178,2,4,4, '...');
+
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (120, 'Mauricio', 'Gonzalez', 'mauro@hotmail.com', 249349-4489, '', 10, NULL, 1);
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (121, 'Andrea', 'Ameghino', 'Mari@gmail.com', 249344-5687, '', 12, NULL, 2);
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (122, 'Catalina', 'Marcoveccio', 'Cata@gmail.com', 234455-7345, '', 13, NULL, 3);
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (123, 'Ortencia', 'Ramirez', 'flor234@hotmail.com', 249566-9191, '', 14, NULL, 4); 
+INSERT INTO Empleado (legajo_empleado, nombre, apellido, email, telefono, observaciones, id_cuenta, id_direccion, id_lugar) values (124, 'Florencia', 'Abaccio', 'kyu_56@gmail.com', 249769-8132, '', 15, NULL, 5);
+
