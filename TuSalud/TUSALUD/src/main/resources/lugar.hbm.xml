@@ -47,11 +47,11 @@ Contributor(s):
   <property name="nombre" column="nombre" type="string" not-null="true" />
   <many-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" column="id_Direccion" />
   <bag name="especialidades" table="especialidad" inverse="false" fetch="select">
-      <key column="id_Especialidad" />
+      <key column="id_Lugar" />
       <one-to-many class="com.mycompany.tusalud.data.Especialidad" />
   </bag>
   <bag name="turnos" table="turno" inverse="false" fetch="select">
-      <key column="id_turno" />
+      <key column="id_Lugar" />
       <one-to-many class="com.mycompany.tusalud.data.Turno" />
   </bag>
   </class>
