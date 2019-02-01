@@ -37,7 +37,7 @@ public class ConsultaLugar {
             return lugar;
         }catch (HibernateException e) {
             e.printStackTrace();
-            throw new BDException("Error al pedir la lista de turnos", e);
+            throw new BDException("Error al pedir el lugar", e);
         }
     }
     
@@ -58,7 +58,7 @@ public class ConsultaLugar {
             return lugar;
         }catch (HibernateException e) {
             e.printStackTrace();
-            throw new BDException("Error al pedir la lista de turnos", e);
+            throw new BDException("Error al pedir el lugar", e);
         }
     }
     
