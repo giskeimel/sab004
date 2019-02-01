@@ -10,6 +10,7 @@ import com.mycompany.tusalud.data.Lugar;
 import com.mycompany.tusalud.excepciones.BDException;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -25,7 +26,10 @@ public class ConsultaLugar {
             Session session = HibernateUtilities.getSession();
             session.beginTransaction();
             
-            Lugar lugar = (Lugar) session.createQuery("SELECT l FROM Lugar l WHERE l.nombre LIKE " + nombre);
+            Query query = session.createQuery("FROM Lugar l WHERE l.nombre = :nombre");
+            query.setParameter("nombre", nombre);
+            
+            Lugar lugar = (Lugar) query.uniqueResult();
             
             session.getTransaction().commit();
             session.close();
