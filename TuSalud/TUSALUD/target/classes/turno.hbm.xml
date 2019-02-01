@@ -45,7 +45,7 @@ Contributor(s):
         <generator class ="increment" />
     </id>
     <property name="fecha" column="fecha" type ="date" not-null= "true" />
-    <property name="libre" column="libre" type ="byte" not-null= "true" />
+    <property name="libre" column="libre" type ="boolean" not-null= "true" />
     <many-to-one name="especialidad" class="com.mycompany.tusalud.data.Especialidad" column="id_Especialidad" />
     <many-to-one name="paciente" class="com.mycompany.tusalud.data.Paciente" column="id_Paciente" />
   </class>
