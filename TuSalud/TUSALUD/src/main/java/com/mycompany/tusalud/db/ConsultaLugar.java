@@ -86,7 +86,7 @@ public class ConsultaLugar {
         if (! lugar.getEspecialidades().isEmpty()){
             return lugar.getEspecialidades();
         }else{
-            throw new BDException("Error al pedir la lista de especialidades");
+            throw new BDException("La lista de especialidades esta vacia");
         }
     }
     
@@ -95,7 +95,7 @@ public class ConsultaLugar {
         if (! lugar.getTurnos().isEmpty()){
             return lugar.getTurnos();
         }else{
-            throw new BDException("Error al pedir la lista de turnos");
+            throw new BDException("La lista de turnos esta vacia");
         }
     }
 }
