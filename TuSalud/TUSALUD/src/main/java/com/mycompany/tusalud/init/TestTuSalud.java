@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.tusalud.tusalud;
+package com.mycompany.tusalud.init;
 
 import HibernateClase.HibernateUtilities;
 import com.mycompany.tusalud.data.*;
@@ -19,7 +19,7 @@ public class TestTuSalud {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         // TODO code application logic here
         try{
             Session session = HibernateUtilities.getSession();
@@ -38,5 +38,5 @@ public class TestTuSalud {
             e.printStackTrace();
         }
         System.exit(0);
-    }
+    }*/
 }
