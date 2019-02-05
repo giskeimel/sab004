@@ -69,6 +69,11 @@ public class Login2 extends javax.swing.JFrame {
         jButtonIniciarSesion.setText("Iniciar Sesión");
         jButtonIniciarSesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
         jButtonIniciarSesion.setBorderPainted(false);
+        jButtonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarSesionActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setBackground(new java.awt.Color(238, 112, 82));
         jButtonSalir.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -142,7 +147,7 @@ public class Login2 extends javax.swing.JFrame {
                         .addComponent(jButtonRegistro)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 33, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +223,7 @@ public class Login2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
     private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
@@ -232,6 +237,13 @@ public class Login2 extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
+        String usuario = jTextFieldUsuario.getText();
+        String password = new String(jPasswordField1.getPassword());
+        System.out.println("Alguien intento iniciar Sesion Usr: " + usuario + " Psw: " + password);
+        // Aca debo llamar al servicio que me verifica el usuario y contraseña
+    }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments

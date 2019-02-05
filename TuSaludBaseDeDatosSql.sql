@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`turno` (
   `libre` BIT(1) NOT NULL,
   `id_lugar` INT NOT NULL,
   `id_especialidad` INT NOT NULL,
-  `id_paciente` INT NOT NULL,
+  `id_paciente` INT,
   PRIMARY KEY (`id`),
   INDEX `fk_turno_lugar1_idx` (`id_lugar` ASC),
   INDEX `fk_turno_especialidad1_idx` (`id_especialidad` ASC),
