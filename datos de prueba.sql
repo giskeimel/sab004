@@ -47,11 +47,11 @@ insert into cuenta(usuario,contraseña)values('ortencia','ortencia');
 
 
 
-INSERT INTO Empleado (legajo, nombre, apellido, email, id_cuenta, id_lugar) 
+INSERT INTO empleado (legajo, nombre, apellido, email, id_cuenta, id_lugar) 
 values (120, 'Mauricio', 'Gonzalez', 'mauro@hotmail.com', 5, 1);
-INSERT INTO Empleado (legajo, nombre, apellido, email, id_cuenta,  id_lugar) 
+INSERT INTO empleado (legajo, nombre, apellido, email, id_cuenta,  id_lugar) 
 values (121, 'Andrea', 'Ameghino', 'Mari@gmail.com', 6, 2);
-INSERT INTO Empleado (legajo, nombre, apellido, email, id_cuenta,  id_lugar) 
+INSERT INTO empleado (legajo, nombre, apellido, email, id_cuenta,  id_lugar) 
 values (122, 'Catalina', 'Marcoveccio', 'Cata@gmail.com', 7, 2);
-INSERT INTO Empleado (legajo, nombre, apellido, email, id_cuenta,  id_lugar)
+INSERT INTO empleado (legajo, nombre, apellido, email, id_cuenta,  id_lugar)
 values (123, 'Ortencia', 'Ramirez', 'flor234@hotmail.com',8, 1); 

@@ -18,9 +18,9 @@ CREATE SCHEMA IF NOT EXISTS `TuSalud` DEFAULT CHARACTER SET utf8 ;
 USE `TuSalud` ;
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Cuenta`
+-- Table `TuSalud`.`cuenta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Cuenta` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`cuenta` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(45) NOT NULL,
   `contraseña` VARCHAR(45) NOT NULL,
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Direccion`
+-- Table `TuSalud`.`direccion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Direccion` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`direccion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `numero` INT NOT NULL,
   `calle` VARCHAR(45) NOT NULL,
@@ -42,241 +42,241 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Lugar`
+-- Table `TuSalud`.`lugar`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Lugar` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`lugar` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `id_Direccion` INT NOT NULL,
+  `id_direccion` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Lugar_Direccion1_idx` (`id_Direccion` ASC),
-  CONSTRAINT `fk_Lugar_Direccion1`
-    FOREIGN KEY (`id_Direccion`)
-    REFERENCES `TuSalud`.`Direccion` (`id`)
+  INDEX `fk_lugar_direccion1_idx` (`id_direccion` ASC),
+  CONSTRAINT `fk_lugar_direccion1`
+    FOREIGN KEY (`id_direccion`)
+    REFERENCES `TuSalud`.`direccion` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Paciente`
+-- Table `TuSalud`.`paciente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Paciente` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`paciente` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `historia_clinica` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `telefono` INT NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `id_Lugar` INT NOT NULL,
-  `id_Direccion` INT NULL,
-  `id_Cuenta` INT NOT NULL,
+  `id_lugar` INT NOT NULL,
+  `id_direccion` INT NULL,
+  `id_cuenta` INT NOT NULL,
   `observaciones` VARCHAR(1024) NULL,
-  INDEX `fk_Pasiente_Lugar1_idx` (`id_Lugar` ASC),
-  INDEX `fk_Pasiente_Direccion1_idx` (`id_Direccion` ASC),
-  INDEX `fk_Pasiente_Usuario1_idx` (`id_Cuenta` ASC),
+  INDEX `fk_paciente_lugar1_idx` (`id_lugar` ASC),
+  INDEX `fk_paciente_direccion1_idx` (`id_direccion` ASC),
+  INDEX `fk_paciente_usuario1_idx` (`id_cuenta` ASC),
   UNIQUE INDEX `historia_clinica_UNIQUE` (`historia_clinica` ASC),
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_Pasiente_Lugar1`
-    FOREIGN KEY (`id_Lugar`)
-    REFERENCES `TuSalud`.`Lugar` (`id`)
+  CONSTRAINT `fk_paciente_lugar1`
+    FOREIGN KEY (`id_lugar`)
+    REFERENCES `TuSalud`.`lugar` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pasiente_Direccion1`
-    FOREIGN KEY (`id_Direccion`)
-    REFERENCES `TuSalud`.`Direccion` (`id`)
+  CONSTRAINT `fk_paciente_direccion1`
+    FOREIGN KEY (`id_direccion`)
+    REFERENCES `TuSalud`.`direccion` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pasiente_Usuario1`
-    FOREIGN KEY (`id_Cuenta`)
-    REFERENCES `TuSalud`.`Cuenta` (`id`)
+  CONSTRAINT `fk_paciente_usuario1`
+    FOREIGN KEY (`id_cuenta`)
+    REFERENCES `TuSalud`.`cuenta` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Familiar_a_cargo`
+-- Table `TuSalud`.`familiar_a_cargo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Familiar_a_cargo` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`familiar_a_cargo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
-  `id_Paciente` INT NOT NULL,
+  `id_paciente` INT NOT NULL,
   `mi_historia_clinica` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Familiar_a_cargo_Pasiente1_idx` (`id_Paciente` ASC),
-  INDEX `fk_Familiar_a_cargo_Paciente2_idx` (`mi_historia_clinica` ASC),
-  CONSTRAINT `fk_Familiar_a_cargo_Paciente1`
-    FOREIGN KEY (`id_Paciente`)
-    REFERENCES `TuSalud`.`Paciente` (`id`)
+  INDEX `fk_familiar_a_cargo_paciente1_idx` (`id_paciente` ASC),
+  INDEX `fk_familiar_a_cargo_paciente2_idx` (`mi_historia_clinica` ASC),
+  CONSTRAINT `fk_familiar_a_cargo_paciente1`
+    FOREIGN KEY (`id_paciente`)
+    REFERENCES `TuSalud`.`paciente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Familiar_a_cargo_Paciente2`
+  CONSTRAINT `fk_familiar_a_cargo_paciente2`
     FOREIGN KEY (`mi_historia_clinica`)
-    REFERENCES `TuSalud`.`Paciente` (`id`)
+    REFERENCES `TuSalud`.`paciente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Especialidad`
+-- Table `TuSalud`.`especialidad`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Especialidad` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`especialidad` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Empleado`
+-- Table `TuSalud`.`empleado`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Empleado` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`empleado` (
   `id` INT  AUTO_INCREMENT NOT NULL,
   `legajo` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `id_Cuenta` INT NOT NULL,
-  `id_Direccion` INT NULL,
-  `id_Lugar` INT NOT NULL,
-  INDEX `fk_Empleado_Usuario1_idx` (`id_Cuenta` ASC),
-  INDEX `fk_Empleado_Direccion1_idx` (`id_Direccion` ASC),
-  INDEX `fk_Empleado_Lugar1_idx` (`id_Lugar` ASC),
+  `id_cuenta` INT NOT NULL,
+  `id_direccion` INT NULL,
+  `id_lugar` INT NOT NULL,
+  INDEX `fk_empleado_usuario1_idx` (`id_cuenta` ASC),
+  INDEX `fk_empleado_direccion1_idx` (`id_direccion` ASC),
+  INDEX `fk_empleado_lugar1_idx` (`id_lugar` ASC),
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_Empleado_Usuario1`
-    FOREIGN KEY (`id_Cuenta`)
-    REFERENCES `TuSalud`.`Cuenta` (`id`)
+  CONSTRAINT `fk_empleado_usuario1`
+    FOREIGN KEY (`id_cuenta`)
+    REFERENCES `TuSalud`.`cuenta` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Empleado_Direccion1`
-    FOREIGN KEY (`id_Direccion`)
-    REFERENCES `TuSalud`.`Direccion` (`id`)
+  CONSTRAINT `fk_empleado_direccion1`
+    FOREIGN KEY (`id_direccion`)
+    REFERENCES `TuSalud`.`direccion` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Empleado_Lugar1`
-    FOREIGN KEY (`id_Lugar`)
-    REFERENCES `TuSalud`.`Lugar` (`id`)
+  CONSTRAINT `fk_empleado_lugar1`
+    FOREIGN KEY (`id_lugar`)
+    REFERENCES `TuSalud`.`lugar` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Turno`
+-- Table `TuSalud`.`turno`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Turno` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`turno` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATETIME NOT NULL,
   `libre` BIT(1) NOT NULL,
-  `id_Lugar` INT NOT NULL,
-  `id_Especialidad` INT NOT NULL,
-  `id_Paciente` INT NOT NULL,
+  `id_lugar` INT NOT NULL,
+  `id_especialidad` INT NOT NULL,
+  `id_paciente` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Turno_Lugar1_idx` (`id_Lugar` ASC),
-  INDEX `fk_Turno_Especialidad1_idx` (`id_Especialidad` ASC),
-  INDEX `fk_Turno_Pasiente1_idx` (`id_Paciente` ASC),
-  CONSTRAINT `fk_Turno_Lugar1`
-    FOREIGN KEY (`id_Lugar`)
-    REFERENCES `TuSalud`.`Lugar` (`id`)
+  INDEX `fk_turno_lugar1_idx` (`id_lugar` ASC),
+  INDEX `fk_turno_especialidad1_idx` (`id_especialidad` ASC),
+  INDEX `fk_turno_paciente1_idx` (`id_paciente` ASC),
+  CONSTRAINT `fk_turno_lugar1`
+    FOREIGN KEY (`id_lugar`)
+    REFERENCES `TuSalud`.`lugar` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Turno_Especialidad1`
-    FOREIGN KEY (`id_Especialidad`)
-    REFERENCES `TuSalud`.`Especialidad` (`id`)
+  CONSTRAINT `fk_turno_especialidad1`
+    FOREIGN KEY (`id_especialidad`)
+    REFERENCES `TuSalud`.`especialidad` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Turno_Pasiente1`
-    FOREIGN KEY (`id_Paciente`)
-    REFERENCES `TuSalud`.`Paciente` (`id`)
+  CONSTRAINT `fk_turno_paciente1`
+    FOREIGN KEY (`id_paciente`)
+    REFERENCES `TuSalud`.`paciente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Derivacion`
+-- Table `TuSalud`.`derivacion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Derivacion` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`derivacion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
   `aprobado` BIT(1) NOT NULL,
-  `id_Especialidad` INT NOT NULL,
-  `id_Paciente` INT NOT NULL,
-  INDEX `fk_Derivacion_Especialidad1_idx` (`id_Especialidad` ASC),
+  `id_especialidad` INT NOT NULL,
+  `id_paciente` INT NOT NULL,
+  INDEX `fk_derivacion_especialidad1_idx` (`id_especialidad` ASC),
   PRIMARY KEY (`id`),
-  INDEX `fk_Derivacion_Paciente1_idx` (`id_Paciente` ASC),
-  CONSTRAINT `fk_Derivacion_Especialidad1`
-    FOREIGN KEY (`id_Especialidad`)
-    REFERENCES `TuSalud`.`Especialidad` (`id`)
+  INDEX `fk_derivacion_paciente1_idx` (`id_paciente` ASC),
+  CONSTRAINT `fk_derivacion_especialidad1`
+    FOREIGN KEY (`id_especialidad`)
+    REFERENCES `TuSalud`.`especialidad` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Derivacion_Paciente1`
-    FOREIGN KEY (`id_Paciente`)
-    REFERENCES `TuSalud`.`Paciente` (`id`)
+  CONSTRAINT `fk_derivacion_paciente1`
+    FOREIGN KEY (`id_paciente`)
+    REFERENCES `TuSalud`.`paciente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Lugar_nn_Especialidad`
+-- Table `TuSalud`.`lugar_nn_especialidad`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Lugar_nn_Especialidad` (
-  `id_Lugar` INT NOT NULL,
-  `id_Especialidad` INT NOT NULL,
-  PRIMARY KEY (`id_Lugar`, `id_Especialidad`),
-  INDEX `fk_Lugar_has_Especialidad_Especialidad1_idx` (`id_Especialidad` ASC),
-  INDEX `fk_Lugar_has_Especialidad_Lugar1_idx` (`id_Lugar` ASC),
-  CONSTRAINT `fk_Lugar_has_Especialidad_Lugar1`
-    FOREIGN KEY (`id_Lugar`)
-    REFERENCES `TuSalud`.`Lugar` (`id`)
+CREATE TABLE IF NOT EXISTS `TuSalud`.`lugar_nn_especialidad` (
+  `id_lugar` INT NOT NULL,
+  `id_especialidad` INT NOT NULL,
+  PRIMARY KEY (`id_lugar`, `id_especialidad`),
+  INDEX `fk_lugar_has_especialidad_especialidad1_idx` (`id_especialidad` ASC),
+  INDEX `fk_lugar_has_especialidad_lugar1_idx` (`id_lugar` ASC),
+  CONSTRAINT `fk_lugar_has_especialidad_lugar1`
+    FOREIGN KEY (`id_lugar`)
+    REFERENCES `TuSalud`.`lugar` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Lugar_has_Especialidad_Especialidad1`
-    FOREIGN KEY (`id_Especialidad`)
-    REFERENCES `TuSalud`.`Especialidad` (`id`)
+  CONSTRAINT `fk_lugar_has_especialidad_especialidad1`
+    FOREIGN KEY (`id_especialidad`)
+    REFERENCES `TuSalud`.`especialidad` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Profesional`
+-- Table `TuSalud`.`profesional`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Profesional` (
+CREATE TABLE IF NOT EXISTS `TuSalud`.`profesional` (
   `id` INT AUTO_INCREMENT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
-  `id_Especialidad` INT NOT NULL,
-  INDEX `fk_Profesional_Especialidad1_idx` (`id_Especialidad` ASC),
+  `id_especialidad` INT NOT NULL,
+  INDEX `fk_profesional_especialidad1_idx` (`id_especialidad` ASC),
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_Profesional_Especialidad1`
-    FOREIGN KEY (`id_Especialidad`)
-    REFERENCES `TuSalud`.`Especialidad` (`id`)
+  CONSTRAINT `fk_profesional_especialidad1`
+    FOREIGN KEY (`id_especialidad`)
+    REFERENCES `TuSalud`.`especialidad` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `TuSalud`.`Turno_has_Profesional`
+-- Table `TuSalud`.`turno_has_profesional`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TuSalud`.`Turno_nn_Profesional` (
-  `Turno_id` INT NOT NULL,
-  `Profesional_id` INT NOT NULL,
-  PRIMARY KEY (`Turno_id`, `Profesional_id`),
-  INDEX `fk_Turno_has_Profesional_Profesional1_idx` (`Profesional_id` ASC),
-  INDEX `fk_Turno_has_Profesional_Turno1_idx` (`Turno_id` ASC),
-  CONSTRAINT `fk_Turno_has_Profesional_Turno1`
-    FOREIGN KEY (`Turno_id`)
-    REFERENCES `TuSalud`.`Turno` (`id`)
+CREATE TABLE IF NOT EXISTS `TuSalud`.`turno_nn_profesional` (
+  `turno_id` INT NOT NULL,
+  `profesional_id` INT NOT NULL,
+  PRIMARY KEY (`turno_id`, `profesional_id`),
+  INDEX `fk_turno_has_profesional_profesional1_idx` (`profesional_id` ASC),
+  INDEX `fk_turno_has_profesional_turno1_idx` (`turno_id` ASC),
+  CONSTRAINT `fk_turno_has_profesional_turno1`
+    FOREIGN KEY (`turno_id`)
+    REFERENCES `TuSalud`.`turno` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Turno_has_Profesional_Profesional1`
-    FOREIGN KEY (`Profesional_id`)
-    REFERENCES `TuSalud`.`Profesional` (`id`)
+  CONSTRAINT `fk_turno_has_profesional_profesional1`
+    FOREIGN KEY (`profesional_id`)
+    REFERENCES `TuSalud`.`profesional` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
