@@ -3,20 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package com.mycompany.tusalud.interfaces;
+
+import com.mycompany.tusalud.controller.LoginService;
 
 /**
  *
  * @author LangTecnologia
  */
-public class Login2 extends javax.swing.JFrame {
+public class VistaLogin extends javax.swing.JFrame {
 
+    LoginService loginService;
     /**
      * Creates new form Login2
      */
-    public Login2() {
+    public VistaLogin() {
+        loginService = new LoginService();
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -243,6 +248,7 @@ public class Login2 extends javax.swing.JFrame {
         String password = new String(jPasswordField1.getPassword());
         System.out.println("Alguien intento iniciar Sesion Usr: " + usuario + " Psw: " + password);
         // Aca debo llamar al servicio que me verifica el usuario y contraseña
+        loginService.login(usuario, password);
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
     /**
@@ -262,21 +268,23 @@ public class Login2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login2().setVisible(true);
+                new VistaLogin().setVisible(true);
             }
         });
     }

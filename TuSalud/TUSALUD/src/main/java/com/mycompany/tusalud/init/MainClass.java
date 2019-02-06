@@ -5,7 +5,8 @@
  */
 package com.mycompany.tusalud.init;
 
-import Interfaces.Login2;
+import com.mycompany.tusalud.controller.Navegacion;
+import com.mycompany.tusalud.data.Paciente;
 
 /**
  *
@@ -13,8 +14,10 @@ import Interfaces.Login2;
  * Esta va a ser la clase principal desde donde se llama el login y empieza el flujo.
  */
 public class MainClass {
+    public static Navegacion navegacion  = new Navegacion();
+    
+    public Paciente paciente;
         public static void main(String[] args) {
-            Login2 login = new Login2();
-            login.setVisible(true);
+            navegacion.crearLogin();
         }
 }

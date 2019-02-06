@@ -5,7 +5,7 @@
  */
 package com.mycompany.tusalud.init;
 
-import HibernateClase.HibernateUtilities;
+import com.mycompany.tusalud.HibernateClase.HibernateUtilities;
 import com.mycompany.tusalud.data.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
