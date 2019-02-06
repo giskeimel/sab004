@@ -76,4 +76,5 @@ public class Turno {
     public String toString() {
         return "Turno{" + "fecha=" + fecha + ", libre=" + libre + ", lugar=" + lugar + ", especialidad=" + especialidad + ", paciente=" + paciente + '}';
     }  
+
 }
