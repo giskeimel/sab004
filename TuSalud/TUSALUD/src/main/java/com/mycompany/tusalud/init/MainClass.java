@@ -17,6 +17,7 @@ public class MainClass {
     public static Navegacion navegacion  = new Navegacion();
     
     public Paciente paciente;
+    
         public static void main(String[] args) {
             navegacion.crearLogin();
         }

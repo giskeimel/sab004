@@ -5,6 +5,8 @@
  */
 package com.mycompany.tusalud.interfaces;
 
+import com.mycompany.tusalud.init.MainClass;
+
 /**
  *
  * @author User
@@ -29,12 +31,12 @@ public class VistaMenu extends javax.swing.JFrame {
 
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanelInferior = new javax.swing.JPanel();
-        jButtonSalir = new javax.swing.JButton();
+        jButtonCerrarSesion = new javax.swing.JButton();
         jPanelSuperior = new javax.swing.JPanel();
         jLabelNombreUsuario = new javax.swing.JLabel();
         jLabelFecha = new javax.swing.JLabel();
         jPanelMedio = new javax.swing.JPanel();
-        jButtonMasTurnos = new javax.swing.JButton();
+        jButtonSacarTurno = new javax.swing.JButton();
         jButtonNotificaciones = new javax.swing.JButton();
         jButtonTurnosAdquiridos = new javax.swing.JButton();
 
@@ -46,10 +48,10 @@ public class VistaMenu extends javax.swing.JFrame {
 
         jPanelInferior.setBackground(new java.awt.Color(238, 112, 82));
 
-        jButtonSalir.setText("Salir");
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCerrarSesion.setText("Cerrar Sesion");
+        jButtonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
+                jButtonCerrarSesionActionPerformed(evt);
             }
         });
 
@@ -58,15 +60,15 @@ public class VistaMenu extends javax.swing.JFrame {
         jPanelInferiorLayout.setHorizontalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInferiorLayout.createSequentialGroup()
-                .addGap(246, 246, 246)
-                .addComponent(jButtonSalir)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addGap(226, 226, 226)
+                .addComponent(jButtonCerrarSesion)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanelInferiorLayout.setVerticalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInferiorLayout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jButtonSalir)
+                .addComponent(jButtonCerrarSesion)
                 .addContainerGap())
         );
 
@@ -103,11 +105,11 @@ public class VistaMenu extends javax.swing.JFrame {
 
         jPanelMedio.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButtonMasTurnos.setBackground(new java.awt.Color(238, 112, 82));
-        jButtonMasTurnos.setText("Turnos");
-        jButtonMasTurnos.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSacarTurno.setBackground(new java.awt.Color(238, 112, 82));
+        jButtonSacarTurno.setText("Sacar Turno");
+        jButtonSacarTurno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMasTurnosActionPerformed(evt);
+                jButtonSacarTurnoActionPerformed(evt);
             }
         });
 
@@ -133,7 +135,7 @@ public class VistaMenu extends javax.swing.JFrame {
             jPanelMedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMedioLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jButtonMasTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSacarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jButtonNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
@@ -146,7 +148,7 @@ public class VistaMenu extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanelMedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonMasTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSacarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonTurnosAdquiridos, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -156,13 +158,15 @@ public class VistaMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonMasTurnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMasTurnosActionPerformed
+    private void jButtonSacarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacarTurnoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonMasTurnosActionPerformed
+        MainClass.navegacion.crearSeleccionEspecialidad();
+    }//GEN-LAST:event_jButtonSacarTurnoActionPerformed
 
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+    private void jButtonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSalirActionPerformed
+        MainClass.navegacion.cerrarSesion();
+    }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 
     private void jButtonTurnosAdquiridosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTurnosAdquiridosActionPerformed
         // TODO add your handling code here:
@@ -209,9 +213,9 @@ public class VistaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonMasTurnos;
+    private javax.swing.JButton jButtonCerrarSesion;
     private javax.swing.JButton jButtonNotificaciones;
-    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonSacarTurno;
     private javax.swing.JButton jButtonTurnosAdquiridos;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelNombreUsuario;

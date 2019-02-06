@@ -18,7 +18,8 @@ public class LoginService {
     public void login(String usuario, String password) {
         if (consultaLogin.login(usuario, password)) {
             //Aca deberia ir al menu.
-            MainClass.navegacion.crearSeleccionEspecialidad();
+            
+            MainClass.navegacion.crearMenu();
         } else {
             //deberiamos mostrar un mensaje de error.
         }
