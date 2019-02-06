@@ -5,7 +5,9 @@
  */
 package com.mycompany.tusalud.controller;
 
+import com.mycompany.tusalud.interfaces.VistaAlmanaque;
 import com.mycompany.tusalud.interfaces.VistaLogin;
+import com.mycompany.tusalud.interfaces.VistaMenu;
 import com.mycompany.tusalud.interfaces.VistaSeleccionarEspecialidad;
 
 /**
@@ -16,7 +18,9 @@ import com.mycompany.tusalud.interfaces.VistaSeleccionarEspecialidad;
 public class Navegacion {
     
     VistaLogin login;
+    VistaMenu menu;
     VistaSeleccionarEspecialidad especialidad;
+    VistaAlmanaque almanaque;
     
     public void crearLogin() {
         if (login == null) {
@@ -25,11 +29,37 @@ public class Navegacion {
         login.setVisible(true);
     }
     
+    public void crearMenu(){
+        if (menu == null){
+            menu = new VistaMenu();
+        }
+        login.setVisible(false);
+        menu.setVisible(true);
+    }
+    
     public void crearSeleccionEspecialidad(){
         if (especialidad == null) {
             especialidad = new VistaSeleccionarEspecialidad();
         }
-        login.setVisible(false);
+        menu.setVisible(false);
         especialidad.setVisible(true);
+    }
+    
+    public void crearAlmanaque(){
+        if (almanaque == null) {
+            almanaque = new VistaAlmanaque();
+        }
+        especialidad.setVisible(false);
+        almanaque.setVisible(true);
+    }
+    
+    public void volverAMenu(){
+        especialidad.dispose();
+        menu.setVisible(true);
+    }
+    
+    public void cerrarSesion(){
+        menu.dispose();
+        login.setVisible(true);
     }
 }
