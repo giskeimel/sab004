@@ -7,8 +7,11 @@ package com.mycompany.tusalud.init;
 
 import com.mycompany.tusalud.HibernateClase.HibernateUtilities;
 import com.mycompany.tusalud.data.*;
+import com.mycompany.tusalud.controladores.ControladorLogin;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import com.mycompany.tusalud.Exceptiones.BDException;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -39,4 +42,15 @@ public class TestTuSalud {
         }
         System.exit(0);
     }*/
+
+    public static void main(String[] args) throws BDException{
+        // TODO code application logic here
+        
+        String usuario="Manuel";
+        String contraseña="Manuel";
+                
+        ControladorLogin controlador = new ControladorLogin();
+        boolean usuarioCorrecto = controlador.login(usuario, contraseña);
+        System.out.print("el usuario es:"+usuarioCorrecto);
+    }
 }
