@@ -6,14 +6,13 @@
 package com.mycompany.tusalud.db;
 
 
+
+import com.mycompany.tusalud.HibernateClase.HibernateUtilities;
 import com.mycompany.tusalud.data.Turno;
 import com.mycompany.tusalud.data.Paciente;
 import java.util.Date;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+
 
 
 
@@ -22,39 +21,25 @@ public class ConsultaTurno {
 
     private Date fecha;
 
-    public int asignarTurno(Turno turno, Paciente paciente) {
+    public void asignarTurno(Turno turno, Paciente paciente) throws Exception {
 
-        SessionFactory factory;
-        int seleccionado;
-
-        try {
-            factory = new Configuration().configure().buildSessionFactory();
-        } catch (final HibernateException a1) {
-
-            System.out.println("Ocurrio un error en la inicializacion de la SessionFactory: " + a1);
-            throw new ExceptionInInitializerError(a1);
-        }
-
-        final Session session = factory.openSession();
-
-        Transaction transaction = null;
-
-        transaction = session.beginTransaction();
+          Session session = HibernateUtilities.getSession();
+            session.beginTransaction();
 
         turno.setFecha(fecha);       
         turno.setPaciente(paciente);
 
         try {
+            
             session.save(turno);
-            seleccionado = 1;
             System.out.println("Turno Ingresado con Exito");
-            return seleccionado;
-        } catch (final Exception e) {
-            System.out.println(e.getMessage());
-            seleccionado = 0;
-            return seleccionado;
+           
+        } catch (final Exception e) {  
+         
         }
+
     }
 
+ 
 }
 
