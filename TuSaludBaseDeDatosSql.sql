@@ -162,7 +162,8 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`empleado` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+alter table empleado add column telefono long not null;
+alter table empleado add column observaciones long not null;
 -- -----------------------------------------------------
 -- Table `TuSalud`.`turno`
 -- -----------------------------------------------------

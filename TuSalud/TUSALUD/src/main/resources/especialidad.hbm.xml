@@ -41,9 +41,9 @@ Contributor(s):
 -->
 <hibernate-mapping>
   <class name="com.mycompany.tusalud.data.Especialidad" table="especialidad" >
-  <id name="idEspecialidad" column="id">
-      <generator class="increment" />
-  </id>
-  <property name="nombre" column="nombre" type="string" length="120" not-null="true" />
+    <id name="idEspecialidad" column="id">
+        <generator class="increment" />
+    </id>
+    <property name="nombre" column="nombre" type="string" length="120" not-null="true" />
   </class>
 </hibernate-mapping>

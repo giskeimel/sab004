@@ -24,8 +24,6 @@ public class Paciente extends Persona  {
         super();
     }
 
-        
-
     public void setHistoria_clinica(int historia_clinica) {
         this.historia_clinica = historia_clinica;
     }
