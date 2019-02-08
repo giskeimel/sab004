@@ -45,8 +45,9 @@ Contributor(s):
         <generator class ="increment" />
     </id>
     <property name="fecha" column="fecha" type ="date" not-null= "true" />
-    <property name="libre" column="libre" type ="byte" not-null= "true" />
-    <many-to-one name="especialidad" class="com.mycompany.tusalud.data.Especialidad" column="id_Especialidad" />
-    <many-to-one name="paciente" class="com.mycompany.tusalud.data.Paciente" column="id_Paciente" />
+    <property name="libre" column="libre" type ="boolean" not-null= "true" />
+    <many-to-one name="lugar" class="com.mycompany.tusalud.data.Lugar" column="id_Lugar" lazy="false" />
+    <many-to-one name="especialidad" class="com.mycompany.tusalud.data.Especialidad" column="id_Especialidad" lazy="false" />
+    <many-to-one name="paciente" class="com.mycompany.tusalud.data.Paciente" column="id_Paciente" lazy="false" />
   </class>
 </hibernate-mapping>

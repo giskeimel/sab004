@@ -6,6 +6,10 @@
 package com.mycompany.tusalud.interfaces;
 
 import com.mycompany.tusalud.controller.LoginService;
+import com.mycompany.tusalud.data.Persona;
+import com.mycompany.tusalud.excepciones.LoginException;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -14,11 +18,12 @@ import com.mycompany.tusalud.controller.LoginService;
 public class VistaLogin extends javax.swing.JFrame {
 
     LoginService loginService;
+    
     /**
      * Creates new form Login2
      */
-    public VistaLogin() {
-        loginService = new LoginService();
+    public VistaLogin(LoginService loginService) {
+        this.loginService = loginService;
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -248,46 +253,16 @@ public class VistaLogin extends javax.swing.JFrame {
         String password = new String(jPasswordField1.getPassword());
         System.out.println("Alguien intento iniciar Sesion Usr: " + usuario + " Psw: " + password);
         // Aca debo llamar al servicio que me verifica el usuario y contraseña
-        loginService.login(usuario, password);
-    }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaLogin().setVisible(true);
-            }
-        });
-    }
+            loginService.login(usuario, password);
+        } catch (LoginException ex) {
+             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }        
+        
+        
+        
+    }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIniciarSesion;

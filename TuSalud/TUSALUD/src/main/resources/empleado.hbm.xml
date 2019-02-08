@@ -49,9 +49,8 @@ Contributor(s):
     <property name="telefono" column="telefono" type ="long"  not-null= "true" />
     <property name="email" column="email" type ="string" length="120" not-null= "true" />
     <many-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" column="id_Direccion" /> 
-    <property name="legajoEmpleado" column="legajo_empleado" type="integer" not-null="true" /> 
+    <property name="legajoEmpleado" column="legajo" type="integer" not-null="true" /> 
     <many-to-one name="lugarDesignado" class="com.mycompany.tusalud.data.Lugar" column="id_Lugar" />
     <many-to-one name="cuenta" class="com.mycompany.tusalud.data.Cuenta" column="id_Cuenta" />
-    <property name="observaciones" column="observaciones" type ="string" length="120" not-null= "true" />
   </class>
 </hibernate-mapping>

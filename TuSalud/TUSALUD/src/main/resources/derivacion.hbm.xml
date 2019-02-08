@@ -46,9 +46,7 @@ Contributor(s):
     </id>
     <property name="fecha" column="fecha" not-null="true" type="date" />
     <property name="aprobado" column="aprobado" not-null="true" type="byte" />
-    <many-to-one name="especialidad" class="com.mycompany.tusalud.data.Especialidad"
-    column="id_Especialidad" />
-    <many-to-one name="paciente" class="com.mycompany.tusalud.data.Paciente"
-    column="id_paciente" />
+    <many-to-one name="especialidad" class="com.mycompany.tusalud.data.Especialidad" column="id_Especialidad" />
+    <many-to-one name="paciente" class="com.mycompany.tusalud.data.Paciente" column="id_paciente" />
   </class>
 </hibernate-mapping>

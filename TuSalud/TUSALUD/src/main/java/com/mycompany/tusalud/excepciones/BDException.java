@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.tusalud.Exceptiones;
+package com.mycompany.tusalud.excepciones;
 
 /**
  *
- * @author Nati
+ * @author User
  */
-public class BDException extends Exception {
+public class BDException extends TuSaludException {
+
     public BDException() {}
     
     public BDException(String mensaje) {
@@ -18,7 +19,5 @@ public class BDException extends Exception {
     
     public BDException(String mensaje, Exception e) {
         super(mensaje, e);
-    }   
+    }
 }
-
-

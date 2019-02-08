@@ -14,7 +14,6 @@ public class Empleado extends Persona{
    private Integer legajoEmpleado;
    private Cuenta cuenta;
    private Lugar lugarDesignado;
-   private String observaciones;
 
     public Empleado() {
         super();
@@ -45,17 +44,9 @@ public class Empleado extends Persona{
     public void setLugarDesignado(Lugar lugarDesignado) {
         this.lugarDesignado = lugarDesignado;
     }
-
-    public String getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
-    }
-
+    
     @Override
     public String toString() {
-        return super.toString()+ "" + "Empleado{" + "legajoEmpleado=" + legajoEmpleado + ", cuenta=" + cuenta + ", lugarDesignado=" + lugarDesignado + ", observaciones=" + observaciones + '}';
+        return super.toString()+ "" + "Empleado{" + "legajoEmpleado=" + legajoEmpleado + ", cuenta=" + cuenta + ", lugarDesignado=" + lugarDesignado + '}';
     }
 }
