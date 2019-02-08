@@ -6,7 +6,6 @@
 package com.mycompany.tusalud.db;
 
 
-
 import com.mycompany.tusalud.HibernateClase.HibernateUtilities;
 import com.mycompany.tusalud.data.Turno;
 import com.mycompany.tusalud.data.Paciente;
@@ -23,23 +22,24 @@ public class ConsultaTurno {
 
     public void asignarTurno(Turno turno, Paciente paciente) throws Exception {
 
-          Session session = HibernateUtilities.getSession();
-            session.beginTransaction();
+        Session session = HibernateUtilities.getSession();
 
         turno.setFecha(fecha);       
         turno.setPaciente(paciente);
 
-        try {
-            
+        try {  
+            session.saveOrUpdate(turno);
             session.save(turno);
             System.out.println("Turno Ingresado con Exito");
            
         } catch (final Exception e) {  
          
         }
-
+            finally {
+                       if (session != null) {
+                           session.close();
+                       }
+                   }
     }
-
- 
 }
 
