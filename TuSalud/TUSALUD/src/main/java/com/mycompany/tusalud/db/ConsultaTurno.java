@@ -28,8 +28,8 @@ public class ConsultaTurno {
         turno.setPaciente(paciente);
 
         try {  
+            
             session.saveOrUpdate(turno);
-            session.save(turno);
             System.out.println("Turno Ingresado con Exito");
            
         } catch (final Exception e) {  
