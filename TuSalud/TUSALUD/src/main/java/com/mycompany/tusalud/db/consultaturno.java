@@ -15,7 +15,7 @@ import org.hibernate.Session;
  *
  * @author User
  */
-public class consultaturno {
+public class ConsultaTurno {
 
     /**
      * 

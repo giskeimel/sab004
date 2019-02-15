@@ -44,7 +44,7 @@ Contributor(s):
     <id name = "idTurno"  column="id">
         <generator class ="increment" />
     </id>
-    <property name="fecha" column="fecha" type ="date" not-null= "true" />
+    <property name="fecha" column="fecha" type ="timestamp" not-null= "true" />
     <property name="libre" column="libre" type ="boolean" not-null= "true" />
     <many-to-one name="lugar" class="com.mycompany.tusalud.data.Lugar" column="id_Lugar" lazy="false" />
     <many-to-one name="especialidad" class="com.mycompany.tusalud.data.Especialidad" column="id_Especialidad" lazy="false" />

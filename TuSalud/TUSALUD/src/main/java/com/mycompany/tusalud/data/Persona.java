@@ -11,7 +11,7 @@ package com.mycompany.tusalud.data;
  */
 public class Persona {
     
-  private Integer idPersona;
+  private Integer id;
   private String nombre;
   private String apellido;
   private long telefono;
@@ -21,12 +21,12 @@ public class Persona {
     public Persona() {
     }
     
-    public Integer getIdPersona() {
-        return idPersona;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public void setId(Integer idPersona) {
+        this.id = idPersona;
     }
 
     public void setNombre(String nombre) {
@@ -71,6 +71,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", email=" + email + ", direccion=" + direccion + '}';
+        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", email=" + email + ", direccion=" + direccion + '}';
     }
 }

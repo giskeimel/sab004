@@ -7,12 +7,12 @@ package com.mycompany.tusalud.db;
 
 import com.mycompany.tusalud.HibernateClase.HibernateUtilities;
 import com.mycompany.tusalud.data.Lugar;
+import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.data.Turno;
 import com.mycompany.tusalud.excepciones.BDException;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -22,30 +22,6 @@ import org.hibernate.Session;
 public class ConsultaLugar {
     
     public ConsultaLugar(){}
-    
-    public Lugar getLugarPorNombre(String nombre) throws BDException{
-        try{
-            Session session = HibernateUtilities.getSession();
-            session.beginTransaction();
-            
-            Query query = session.createQuery("FROM Lugar l WHERE l.nombre = :nombre");
-            query.setParameter("nombre", nombre);
-            
-            Lugar lugar = (Lugar) query.uniqueResult();
-            
-            session.getTransaction().commit();
-            session.close();
-            
-            if (lugar == null){
-                throw new BDException("No se encontró");
-            }
-            
-            return lugar;
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            throw new BDException("Error al pedir el lugar", e);
-        }
-    }
     
     public Lugar getLugar(Integer idLugar) throws BDException{
         try{
@@ -92,29 +68,45 @@ public class ConsultaLugar {
         }
     }
     
-    public List getListaTurnos(Lugar lugar) throws BDException{
+    public List<Turno> getListaDeTurnosLibres(String especialidad, List<Turno> lista) throws BDException{
+        try{
+            List<Turno> turnosLibres = new ArrayList<>();
         
-        if (! lugar.getTurnos().isEmpty()){
-            return lugar.getTurnos();
-        }else{
-            throw new BDException("La lista de turnos esta vacia");
+            for(Turno objeto: lista){
+                if((objeto.getPaciente() == null) && (objeto.getEspecialidad().getNombre().equalsIgnoreCase(especialidad))){
+                    turnosLibres.add(objeto);
+                }
+            }
+            
+            if (turnosLibres.isEmpty()){
+                throw new BDException("La lista esta vacia");
+            }
+            
+            return turnosLibres;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            throw new BDException("Error al pedir la lista de turnos", e);
         }
     }
     
-    
-    public boolean encontrarTurnosDeLugarPorEspecialidad(String nombre, String especialidad) throws BDException{
+    public List<Turno> getListaTurnosDePaciente(Paciente paciente,List<Turno> lista) throws BDException{
         try{
-            Lugar lugar = this.getLugarPorNombre(nombre);
-            
-            for (Turno objeto: lugar.getTurnos()){
-                if (objeto.getEspecialidad().getNombre().equalsIgnoreCase(especialidad)){
-                    return true;
+            List<Turno> turnosACancelar = new ArrayList<>();
+        
+            for(Turno objeto: lista){
+                if ((objeto.getPaciente() != null) && (objeto.getPaciente().getId().equals(paciente.getId()))) {
+                    turnosACancelar.add(objeto);
                 }
             }
+            
+            if (turnosACancelar.isEmpty()){
+                throw new BDException("La lista esta vacia");
+            }
+            
+            return turnosACancelar;
         } catch (HibernateException e) {
             e.printStackTrace();
-            throw new BDException("Error al buscar los turnos", e);
+            throw new BDException("Error al pedir la lista de turnos", e);
         }
-        return false;
     }
 }

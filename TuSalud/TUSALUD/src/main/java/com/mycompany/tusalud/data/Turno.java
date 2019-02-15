@@ -5,7 +5,7 @@
  */
 package com.mycompany.tusalud.data;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * * @author Nati
@@ -13,7 +13,7 @@ import java.util.Date;
 public class Turno {
     
     private Integer idTurno; 
-    private Date fecha;
+    private Timestamp fecha;
     private boolean libre;
     private Lugar lugar;
     private Especialidad especialidad;
@@ -32,7 +32,7 @@ public class Turno {
     }
 
     
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
@@ -52,7 +52,7 @@ public class Turno {
         return paciente;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
@@ -74,6 +74,6 @@ public class Turno {
   
     @Override
     public String toString() {
-        return "Turno{" + "fecha=" + fecha + ", libre=" + libre + ", lugar=" + lugar + ", especialidad=" + especialidad + ", paciente=" + paciente + '}';
+        return "Fecha : " + fecha ;
     }  
 }

@@ -45,7 +45,7 @@ Contributor(s):
       <generator class="increment" />
   </id>
   <property name="nombre" column="nombre" type="string" not-null="true" />
-  <one-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" />
+  <many-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" column="id_direccion" />
   <bag name="especialidades" table="Lugar_nn_Especialidad" inverse="false" lazy="false" fetch="select">
         <key column="id_Lugar" />
         <many-to-many column="id_Especialidad" class="com.mycompany.tusalud.data.Especialidad" />

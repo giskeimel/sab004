@@ -11,10 +11,9 @@ import javax.swing.JOptionPane;
  *
  * @author Nati
  */
-public class dialogo {
+public class Dialogo {
     
     public static void mostrar(String mensaje,String titulo ){ 
-               JOptionPane.showMessageDialog(null,mensaje,titulo, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null,mensaje,titulo, JOptionPane.INFORMATION_MESSAGE);
     }
-    
 }

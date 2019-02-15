@@ -19,7 +19,7 @@ import com.mycompany.tusalud.excepciones.TuSaludException;
  */
 public class TuSalud {
 
-    private Navegacion navegacion;
+    private final Navegacion navegacion;
 
     private Persona personaLogueada = null;
     

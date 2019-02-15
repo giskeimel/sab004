@@ -17,11 +17,13 @@ public class Lugar {
    private Integer idLugar; 
    private String nombre;
    private Direccion direccion; 
-   private List<Especialidad> especialidades = new ArrayList<>();
-   private List<Turno> turnos = new ArrayList<>();
+   private List<Especialidad> especialidades;
+   private List<Turno> turnos;
 
    
     public Lugar() {
+        especialidades = new ArrayList<>();
+        turnos = new ArrayList<>();
     }
     
     public Integer getIdLugar() {

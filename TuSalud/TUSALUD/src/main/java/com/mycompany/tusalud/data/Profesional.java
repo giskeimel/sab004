@@ -12,7 +12,6 @@ package com.mycompany.tusalud.data;
  */
 public class Profesional extends Persona {
     
-    private Integer idPersona;
     private Especialidad especialidad;
 
     public Profesional() {
@@ -28,6 +27,6 @@ public class Profesional extends Persona {
 
     @Override
     public String toString() {
-        return super.toString() + "" + "Profesional{" + "idPersona=" + idPersona + ", especialidad=" + especialidad + '}';
+        return super.toString() + "" + "Profesional{" + ", especialidad=" + especialidad + '}';
     }
 }

@@ -5,8 +5,13 @@
  */
 package com.mycompany.tusalud.controller;
 
+import com.mycompany.tusalud.data.Turno;
 import com.mycompany.tusalud.db.ConsultaLugar;
+import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.init.TuSalud;
+import com.mycompany.tusalud.interfaces.Dialogo;
+import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -19,5 +24,19 @@ public class EspecialidadService {
     
     public EspecialidadService(TuSalud tuSalud) {
         this.tuSalud = tuSalud;
+    }
+    
+    public void crearAlmanaque(String especialidad) throws BDException{
+        try{
+            List<Turno> turnosLibres = consultaLugar.getListaDeTurnosLibres(especialidad, tuSalud.getPaciente().getLugarDeAtencion().getTurnos());
+            tuSalud.getNavegacion().crearAlmanaque(turnosLibres);
+        } catch(BDException e) {
+            Dialogo.mostrar("La lista esta vacia", "Mensaje");
+            e.printStackTrace();
+        }
+    }
+    
+    public void volverAMenu(JFrame ventana){
+        tuSalud.getNavegacion().volverAMenu(ventana);
     }
 }

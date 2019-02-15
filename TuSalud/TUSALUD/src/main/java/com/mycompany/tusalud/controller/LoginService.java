@@ -30,4 +30,10 @@ public class LoginService {
             tuSalud.setPersonaLogueada(persona);
             tuSalud.getNavegacion().crearMenu();
     }
+    
+    public void registrarCuenta() {
+        tuSalud.getNavegacion().registrarNuevaCuenta();
+    }
+    
+    
 }

@@ -41,16 +41,16 @@ Contributor(s):
 -->
 <hibernate-mapping>
   <class name="com.mycompany.tusalud.data.Paciente" table="paciente">
-    <id name = "idPersona"  column="id">
+    <id name = "id"  column="id">
         <generator class = "increment" />
     </id>
     <property name="nombre" column="nombre" type="string" length="120" not-null="true" />
     <property name="apellido" column="apellido" type="string" length="120" not-null="true" />
     <property name="telefono" column="telefono" type="long"  not-null="true" />
     <property name="email" column="email" type="string" length="120" not-null= "true" />
-    <many-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" column="id_direccion" lazy="false" />
+    <many-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" column="id_Direccion" lazy="false" />
     <property name="historia_clinica" column="historia_clinica" type ="integer" not-null="true" /> 
-    <many-to-one name="lugarDeAtencion" class="com.mycompany.tusalud.data.Lugar" column="id_lugar" lazy="false" />
+    <many-to-one name="lugarDeAtencion" class="com.mycompany.tusalud.data.Lugar" column="id_Lugar" lazy="false" />
     <many-to-one name="cuenta" class="com.mycompany.tusalud.data.Cuenta" column="id_Cuenta" lazy="false" />
     <property name="observaciones" column="observaciones" type="string" length="120" not-null="true" />
     <bag name="personasACargo" table="paciente" inverse="false" lazy="false" fetch="select">

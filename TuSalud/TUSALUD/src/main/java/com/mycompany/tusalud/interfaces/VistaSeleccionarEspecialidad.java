@@ -6,7 +6,12 @@
 package com.mycompany.tusalud.interfaces;
 
 import com.mycompany.tusalud.controller.EspecialidadService;
-import com.mycompany.tusalud.init.TuSalud;
+import com.mycompany.tusalud.data.Especialidad;
+import com.mycompany.tusalud.excepciones.BDException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -14,21 +19,31 @@ import com.mycompany.tusalud.init.TuSalud;
  */
 public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
 
-    private TuSalud tuSalud;
+    EspecialidadService especialidadService;
+    private final List<Especialidad> lista;
 
     /**
      * Creates new form Especialidad
+     * @param especialidadService
+     * @param lista
      */
-    public VistaSeleccionarEspecialidad(TuSalud tuSalud) {
-        this.tuSalud = tuSalud;
+    public VistaSeleccionarEspecialidad(EspecialidadService especialidadService, List<Especialidad> lista) {
+        this.especialidadService = especialidadService;
+        this.lista = lista;
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
-    public VistaSeleccionarEspecialidad(EspecialidadService especialidadService) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    private String[] getArrayEspecialidades() {
+    String[] especialidades = new String[lista.size()];
+        for(int i=0; i<lista.size();i++) {
+            especialidades[i] = lista.get(i).getNombre();
+        }
+        return especialidades;
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,10 +56,10 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListEspecialidad = new javax.swing.JList();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListEspecialidad = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(238, 112, 82));
@@ -75,15 +90,6 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jListEspecialidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jListEspecialidad.setForeground(new java.awt.Color(238, 112, 82));
-        jListEspecialidad.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Traumatologo", "Dentista", "Psicologo", "Pediatra" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jListEspecialidad);
-
         jButtonAceptar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonAceptar.setForeground(new java.awt.Color(238, 112, 82));
         jButtonAceptar.setText("Aceptar");
@@ -102,6 +108,13 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
             }
         });
 
+        jListEspecialidad.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = getArrayEspecialidades();
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListEspecialidad);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,13 +127,13 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonAceptar)
-                        .addGap(114, 114, 114))))
+                        .addGap(114, 114, 114))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,8 +141,8 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonAceptar))
@@ -143,13 +156,17 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         // TODO add your handling code here:
-        int indice = jListEspecialidad.getSelectedIndex();
-        String texto = String.valueOf(indice);
+        try {
+            String elementoSeleccionado = jListEspecialidad.getSelectedValue();
+            especialidadService.crearAlmanaque(elementoSeleccionado);
+        } catch (BDException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
 
-        tuSalud.getNavegacion().volverAMenu();
+        especialidadService.volverAMenu(this);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
  
@@ -158,9 +175,9 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList jListEspecialidad;
+    private javax.swing.JList<String> jListEspecialidad;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

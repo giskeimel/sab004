@@ -47,4 +47,32 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    <build> 
+        <finalName>ejecutable</finalName> 
+         <plugins> 
+             <plugin> 
+                <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-assembly-plugin</artifactId> 
+                 <executions> 
+                     <execution> 
+                         <goals> 
+                            <goal>attached</goal> 
+                        </goals> 
+                        <phase>package</phase> 
+                         <configuration> 
+                             <descriptorRefs> 
+                                <descriptorRef>jar-with-dependencies</descriptorRef> 
+                            </descriptorRefs> 
+                             <archive> 
+                                 <manifest> 
+                                  <!--Clase Main--> 
+                                    <mainClass>com.mycompany.tusalud.init.TestTuSalud</mainClass> 
+                                </manifest> 
+                            </archive> 
+                        </configuration> 
+                    </execution> 
+                </executions> 
+            </plugin> 
+        </plugins> 
+    </build>
 </project>

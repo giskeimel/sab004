@@ -15,20 +15,18 @@ import javax.swing.JFrame;
  *
  * @author Alumno
  */
-public class AlmanaqueService {
-    private ConsultaTurno consultaTurno = new ConsultaTurno();
-    private final TuSalud tuSalud;
+public class CancelarTurnosService {
     
-    public AlmanaqueService(TuSalud tuSalud) {
+    private final TuSalud tuSalud;
+    private ConsultaTurno consultaTurno = new ConsultaTurno();
+    
+    public CancelarTurnosService(TuSalud tuSalud){
         this.tuSalud = tuSalud;
     }
     
-    public void guardarTurno(Turno turno) throws BDException{
-        
+    public void cancelarTurno(Turno turno) throws BDException{
         try{
-            turno.setLibre(false);
-            turno.setPaciente(tuSalud.getPaciente());
-            consultaTurno.guardarTurno(turno);
+            consultaTurno.cancelarTurno(turno);
         }catch(BDException ex) {
             ex.printStackTrace();
         }

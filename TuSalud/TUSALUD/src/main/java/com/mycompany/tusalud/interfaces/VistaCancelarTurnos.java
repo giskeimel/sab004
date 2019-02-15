@@ -5,7 +5,7 @@
  */
 package com.mycompany.tusalud.interfaces;
 
-import com.mycompany.tusalud.controller.AlmanaqueService;
+import com.mycompany.tusalud.controller.CancelarTurnosService;
 import com.mycompany.tusalud.data.Turno;
 import com.mycompany.tusalud.excepciones.BDException;
 import java.awt.event.ActionEvent;
@@ -20,18 +20,18 @@ import javax.swing.JLabel;
  *
  * @author User
  */
-public class VistaAlmanaque extends javax.swing.JFrame {
+public class VistaCancelarTurnos extends javax.swing.JFrame {
     
-    AlmanaqueService almanaqueService;
+    CancelarTurnosService cancelarTurnosService;
     private Map<Integer, Turno> tablaBotonTurno = new HashMap<>();
-    
+
     private ActionListener listenerBoton = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
             JButton boton = (JButton) ae.getSource();
-            Turno turno = (Turno) tablaBotonTurno.get(boton.hashCode());
+            Turno turno = tablaBotonTurno.get(boton.hashCode());
             try {
-                almanaqueService.guardarTurno(turno);
+                cancelarTurnosService.cancelarTurno(turno);
                 cerrar();
             } catch (BDException ex) {
                 ex.printStackTrace();
@@ -39,13 +39,12 @@ public class VistaAlmanaque extends javax.swing.JFrame {
         }
     };
     
-    public VistaAlmanaque(AlmanaqueService almanaqueService, List<Turno> lista) {
-        this.almanaqueService = almanaqueService;
+    public VistaCancelarTurnos(CancelarTurnosService cancelarTurnosService, List<Turno> lista) {
+        this.cancelarTurnosService = cancelarTurnosService;
         initComponents();
         generarBotones(lista);
         this.setLocationRelativeTo(null);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,7 +65,7 @@ public class VistaAlmanaque extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(265, 265, 265)
+                .addGap(256, 256, 256)
                 .addComponent(jButtonCancelar))
         );
         layout.setVerticalGroup(
@@ -83,22 +82,22 @@ public class VistaAlmanaque extends javax.swing.JFrame {
         // TODO add your handling code here:
         cerrar();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
-
+    
     private void generarBotones(List<Turno> lista){
         
         int xl = 10;
         int y = 10;
-        int anchoBoton = 110;
-        int anchoLabel = 200;
+        int anchoBoton = 150;
+        int anchoLabel = 130;
         int altoBoton = 20;
         int altoLabel = 20;
         
-        for(Turno objetoT: lista) {
+        for(Turno objetoT:lista) {
 
             JLabel horario = new JLabel(objetoT.toString());
             horario.setBounds(xl , y, anchoLabel, altoLabel);
             
-            JButton boton = new JButton("Tomar turno");
+            JButton boton = new JButton("Cancelar turno");
             boton.setBounds(xl + anchoLabel + 10, y, anchoBoton, altoBoton);
             tablaBotonTurno.put(boton.hashCode(), objetoT);
             boton.addActionListener(listenerBoton);
@@ -107,13 +106,12 @@ public class VistaAlmanaque extends javax.swing.JFrame {
             
             y = y + 50;
         }    
-        System.out.println(tablaBotonTurno);
     }
     
     public void cerrar() {
-        almanaqueService.volverAMenu(this);
+        cancelarTurnosService.volverAMenu(this);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     // End of variables declaration//GEN-END:variables

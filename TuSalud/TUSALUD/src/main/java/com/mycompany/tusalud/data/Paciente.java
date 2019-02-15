@@ -19,7 +19,7 @@ public class Paciente extends Persona  {
    private Cuenta cuenta;
    private String observaciones;
    private List<Paciente> personasACargo = new ArrayList<>();
-
+   
     public Paciente() {
         super();
     }

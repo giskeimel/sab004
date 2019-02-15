@@ -5,8 +5,9 @@
  */
 package com.mycompany.tusalud.interfaces;
 
+import com.mycompany.tusalud.controller.MenuService;
 import com.mycompany.tusalud.excepciones.BDException;
-import com.mycompany.tusalud.init.TuSalud;
+import com.mycompany.tusalud.excepciones.LoginException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,14 +17,14 @@ import java.util.logging.Logger;
  */
 public class VistaMenu extends javax.swing.JFrame {
 
-    private final TuSalud tuSalud;
+    MenuService menuService;
 
     /**
      * Creates new form Menu
-     * @param tuSalud
+     * @param menuService
      */
-    public VistaMenu(TuSalud tuSalud) {
-        this.tuSalud = tuSalud;
+    public VistaMenu(MenuService menuService) {
+        this.menuService = menuService;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -168,18 +169,23 @@ public class VistaMenu extends javax.swing.JFrame {
 
     private void jButtonSacarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacarTurnoActionPerformed
         try {
-            tuSalud.getNavegacion().crearAlmanaque();
-        } catch (BDException ex) {
+            menuService.crearSeleccionEspecialidad();
+        } catch (LoginException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButtonSacarTurnoActionPerformed
 
     private void jButtonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesionActionPerformed
-        tuSalud.getNavegacion().cerrarSesion();
+        menuService.cerrarSesion();
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 
     private void jButtonTurnosAdquiridosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTurnosAdquiridosActionPerformed
         // TODO add your handling code here:
+        try {
+            menuService.crearCancelarTurnos();
+        } catch (BDException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButtonTurnosAdquiridosActionPerformed
 
     private void jButtonNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNotificacionesActionPerformed
