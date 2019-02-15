@@ -5,6 +5,7 @@
  */
 package com.mycompany.tusalud.controller;
 
+import com.mycompany.tusalud.init.TuSalud;
 import com.mycompany.tusalud.interfaces.VistaAlmanaque;
 import com.mycompany.tusalud.interfaces.VistaLogin;
 import com.mycompany.tusalud.interfaces.VistaMenu;
@@ -17,21 +18,27 @@ import com.mycompany.tusalud.interfaces.VistaSeleccionarEspecialidad;
  */
 public class Navegacion {
     
+    private TuSalud tuSalud;
+    
     VistaLogin login;
     VistaMenu menu;
     VistaSeleccionarEspecialidad especialidad;
     VistaAlmanaque almanaque;
     
+    public Navegacion(TuSalud tuSalud) {
+        this.tuSalud = tuSalud;
+    }
+    
     public void crearLogin() {
         if (login == null) {
-            login = new VistaLogin();
+            login = new VistaLogin(new LoginService(tuSalud));
         }
         login.setVisible(true);
     }
     
     public void crearMenu(){
         if (menu == null){
-            menu = new VistaMenu();
+            menu = new VistaMenu(tuSalud);
         }
         login.setVisible(false);
         menu.setVisible(true);
@@ -39,17 +46,17 @@ public class Navegacion {
     
     public void crearSeleccionEspecialidad(){
         if (especialidad == null) {
-            especialidad = new VistaSeleccionarEspecialidad();
+            especialidad = new VistaSeleccionarEspecialidad(new EspecialidadService(tuSalud));
         }
         menu.setVisible(false);
         especialidad.setVisible(true);
     }
     
     public void crearAlmanaque(){
-        if (almanaque == null) {
-            almanaque = new VistaAlmanaque();
+        if (menu == null) {
+            menu = new VistaMenu(tuSalud);
         }
-        especialidad.setVisible(false);
+        menu.setVisible(false);
         almanaque.setVisible(true);
     }
     

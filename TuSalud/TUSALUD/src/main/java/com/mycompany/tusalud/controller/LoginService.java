@@ -5,24 +5,32 @@
  */
 package com.mycompany.tusalud.controller;
 
+import com.mycompany.tusalud.data.Persona;
 import com.mycompany.tusalud.db.ConsultaLogin;
-import com.mycompany.tusalud.init.MainClass;
+import com.mycompany.tusalud.excepciones.LoginException;
+import com.mycompany.tusalud.init.TuSalud;
 
 /**
  *
  * @author gkeimel
  */
 public class LoginService {
+    
     private ConsultaLogin consultaLogin = new ConsultaLogin();
+    private final TuSalud tuSalud;
+    
+    public LoginService(TuSalud tuSalud) {
+        this.tuSalud = tuSalud;
+    }
     
     public void login(String usuario, String password) {
-        if (consultaLogin.login(usuario, password)) {
-            //Aca deberia ir al menu.
-            
-            MainClass.navegacion.crearMenu();
-        } else {
-            //deberiamos mostrar un mensaje de error.
-        }
         
+        try {
+            Persona persona = consultaLogin.login(usuario, password);
+            tuSalud.setPersonaLogueada(persona);
+            tuSalud.getNavegacion().crearMenu();
+        } catch (LoginException ex) {
+            //Mostrar error al usuario.
+        }        
     }
 }

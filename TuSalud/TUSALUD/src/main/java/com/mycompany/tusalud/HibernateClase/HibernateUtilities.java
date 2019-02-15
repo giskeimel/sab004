@@ -5,6 +5,7 @@
  */
 package com.mycompany.tusalud.HibernateClase;
 
+import com.mycompany.tusalud.excepciones.TuSaludException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,24 +18,22 @@ public class HibernateUtilities {
     private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
 
-    static {
+    public static void inicializar() throws TuSaludException {
         try {
             Configuration configuration = new Configuration().configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        } catch (HibernateException e) {
+            throw new TuSaludException("Error de inicialización de la conexión de la base de datos", e);
         }
-        catch(HibernateException exception) {
-            System.out.println("Problem creating session factory!");
-            exception.printStackTrace();
-        }   
     }
 
     public static Session getSession() {
         return sessionFactory.openSession();
     }
-    
-    public static void cerrarSessionFactory(){
+
+    public static void cerrarSessionFactory() {
         sessionFactory.close();
     }
 }

@@ -5,7 +5,8 @@
  */
 package com.mycompany.tusalud.interfaces;
 
-import com.mycompany.tusalud.init.MainClass;
+import com.mycompany.tusalud.controller.EspecialidadService;
+import com.mycompany.tusalud.init.TuSalud;
 
 /**
  *
@@ -19,6 +20,10 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
     public VistaSeleccionarEspecialidad() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public VistaSeleccionarEspecialidad(EspecialidadService especialidadService) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -141,7 +146,7 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-        MainClass.navegacion.volverAMenu();
+        TuSalud.navegacion.volverAMenu();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
