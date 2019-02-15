@@ -74,6 +74,6 @@ public class Turno {
   
     @Override
     public String toString() {
-        return "Fecha : " + fecha ;
+        return "Fecha : " + fecha+ "  Especialidad: "+ especialidad ;
     }  
 }

@@ -44,6 +44,7 @@ public class VistaCancelarTurnos extends javax.swing.JFrame {
         initComponents();
         generarBotones(lista);
         this.setLocationRelativeTo(null);
+        this.setSize(700, 500);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -88,7 +89,7 @@ public class VistaCancelarTurnos extends javax.swing.JFrame {
         int xl = 10;
         int y = 10;
         int anchoBoton = 150;
-        int anchoLabel = 130;
+        int anchoLabel = 400;
         int altoBoton = 20;
         int altoLabel = 20;
         

@@ -44,6 +44,7 @@ public class VistaAlmanaque extends javax.swing.JFrame {
         initComponents();
         generarBotones(lista);
         this.setLocationRelativeTo(null);
+        this.setSize(700, 500);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,7 +90,7 @@ public class VistaAlmanaque extends javax.swing.JFrame {
         int xl = 10;
         int y = 10;
         int anchoBoton = 110;
-        int anchoLabel = 200;
+        int anchoLabel = 400;
         int altoBoton = 20;
         int altoLabel = 20;
         
