@@ -11,13 +11,18 @@ package com.mycompany.tusalud.data;
  */
 public class Cuenta {
 
-    private Integer idCuenta;
+    private Integer idCuenta = null;
     private String usuario;
     private String contraseña;
 
     public Cuenta() {
     }
 
+    public Cuenta(String usuario, String contraseña) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+    
     public Integer getIdCuenta() {
         return idCuenta;
     }

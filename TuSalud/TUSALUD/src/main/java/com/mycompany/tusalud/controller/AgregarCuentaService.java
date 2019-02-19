@@ -4,44 +4,46 @@
  */
 package com.mycompany.tusalud.controller;
 
-
 import com.mycompany.tusalud.data.Cuenta;
 import com.mycompany.tusalud.data.Direccion;
 import com.mycompany.tusalud.data.Empleado;
 import com.mycompany.tusalud.data.Lugar;
 import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.db.CargarEmpleado;
-import com.mycompany.tusalud.db.CargarPasiente;
-import com.mycompany.tusalud.db.CrearCuenta;
-import com.mycompany.tusalud.excepciones.LoginException;
+import com.mycompany.tusalud.db.ConsultaPaciente;
+import com.mycompany.tusalud.db.ConsultaCuenta;
+import com.mycompany.tusalud.excepciones.TuSaludException;
 import com.mycompany.tusalud.init.TuSalud;
-import java.util.List;
+import com.mycompany.tusalud.interfaces.VistaRegistrarse;
 
 /**
  *
  * @author Nati
  */
-public class AgregarCuenta {
+public class AgregarCuentaService {
 
     private TuSalud tuSalud;
-    private CrearCuenta cuentaNueva = new CrearCuenta();
-    private CargarPasiente pacienteNuevo = new CargarPasiente();
+    private ConsultaCuenta cuentaNueva = new ConsultaCuenta();
+    private ConsultaPaciente pacienteNuevo = new ConsultaPaciente();
     private CargarEmpleado empleadoNuevo = new CargarEmpleado();
 
-    public Paciente AgregarCuentaPaciente(TuSalud tuSalud, String nombre, String apellido,
-             int historia_clinica,String usuario, String contaceña) throws LoginException {
+    public AgregarCuentaService(TuSalud tuSalud) {
+        this.tuSalud = tuSalud;
+    }
+    
+    public Paciente AgregarCuentaPaciente(String nombre, String apellido,
+             int historia_clinica,String usuario, String contaceña,String email) throws TuSaludException {
         Cuenta cuenta = new Cuenta();
         Paciente paciente = new Paciente();
         this.tuSalud = tuSalud;
         cuenta = cuentaNueva.crearCuenta(usuario, contaceña);
-        paciente = pacienteNuevo.crearPaciente(cuenta, nombre, apellido, historia_clinica);
-
+        paciente = pacienteNuevo.crearPaciente(cuenta, nombre, apellido, historia_clinica, email);
         return paciente;
     }
 
-    public Empleado AgregarCuentaEmpleado(TuSalud tuSalud, String nombre, String apellido, long telefono,
+    public Empleado AgregarCuentaEmpleado( String nombre, String apellido, long telefono,
             String email, Direccion direccion, int legajoEmpleado, Lugar lugarDesignado,
-            String usuario, String contaceña) throws LoginException {
+            String usuario, String contaceña) throws TuSaludException {
         Cuenta cuenta = new Cuenta();
         Empleado empleado = new Empleado();
         this.tuSalud = tuSalud;
@@ -49,5 +51,10 @@ public class AgregarCuenta {
         empleado = empleadoNuevo.crearEmpleado(cuenta, nombre, apellido, telefono, email, direccion,
                 legajoEmpleado, lugarDesignado);
         return empleado;
+    }
+    
+    public void volverALogin(VistaRegistrarse vistaRegistrarse) {        
+        vistaRegistrarse.ocultar();
+        tuSalud.getNavegacion().crearLogin();
     }
 }

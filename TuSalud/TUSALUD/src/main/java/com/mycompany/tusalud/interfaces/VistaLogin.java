@@ -251,9 +251,7 @@ public class VistaLogin extends javax.swing.JFrame {
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
         String usuario = jTextFieldUsuario.getText();
         String password = new String(jPasswordField1.getPassword());
-        System.out.println("Alguien intento iniciar Sesion Usr: " + usuario + " Psw: " + password);
-        // Aca debo llamar al servicio que me verifica el usuario y contraseña
-        
+       
         try {
             loginService.login(usuario, password);
         } catch (LoginException ex) {
