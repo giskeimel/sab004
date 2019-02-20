@@ -45,7 +45,7 @@ insert into cuenta(usuario,contraseña)values('andrea','andrea');
 insert into cuenta(usuario,contraseña)values('catalina','catalina');
 insert into cuenta(usuario,contraseña)values('ortencia','ortencia');
 
-
+select * from turno;
 
 INSERT INTO empleado (legajo, nombre, apellido, email, id_cuenta, id_lugar) 
 values (120, 'Mauricio', 'Gonzalez', 'mauro@hotmail.com', 5, 1);

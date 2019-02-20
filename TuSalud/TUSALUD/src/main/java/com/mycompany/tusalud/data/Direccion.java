@@ -11,7 +11,7 @@ package com.mycompany.tusalud.data;
  */
 public class Direccion {
     
-    private Integer idDireccion;
+    private Integer id;
     private Integer numero;
     private String calle;
     private Integer piso;
@@ -52,16 +52,16 @@ public class Direccion {
         return departamento;
     }
 
-    public Integer getIdDireccion() {
-        return idDireccion;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdDireccion(Integer idDireccion) {
-        this.idDireccion = idDireccion;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Direccion{" + "idDireccion=" + idDireccion + ", numero=" + numero + ", calle=" + calle + ", piso=" + piso + ", departamento=" + departamento + '}';
+        return "Direccion{" + "idDireccion=" + id + ", numero=" + numero + ", calle=" + calle + ", piso=" + piso + ", departamento=" + departamento + '}';
     }
 }

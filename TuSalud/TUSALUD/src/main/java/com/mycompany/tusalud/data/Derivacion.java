@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Derivacion {
     
-   private Integer idDerivacion;
+   private Integer id;
    private Date fecha;
    private Boolean aprobado;
    private Especialidad especialidad;
@@ -54,16 +54,16 @@ public class Derivacion {
         return paciente;
     }
 
-    public Integer getIdDerivacion() {
-        return idDerivacion;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdDerivacion(Integer idDerivacion) {
-        this.idDerivacion = idDerivacion;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Derivacion{" + "idDerivacion=" + idDerivacion + ", fecha=" + fecha + ", aprobado=" + aprobado + ", especialidad=" + especialidad + ", paciente=" + paciente + '}';
+        return "Derivacion{" + "idDerivacion=" + id + ", fecha=" + fecha + ", aprobado=" + aprobado + ", especialidad=" + especialidad + ", paciente=" + paciente + '}';
     }
 }

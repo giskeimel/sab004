@@ -41,12 +41,12 @@ Contributor(s):
 -->
 <hibernate-mapping>
   <class name="com.mycompany.tusalud.data.Direccion" table="direccion">
-    <id name="idDireccion"  column="id">
-      <generator class="increment" />
+    <id column="id" name="id">
+      <generator class="increment"/>
     </id>
-    <property name="numero" column="numero" type ="integer" not-null="true" />
-    <property name="calle" column="calle" type ="string" length="120" not-null="true" />
-    <property name="piso" column="piso" type ="integer" />
-    <property name="departamento" column="departamento" type ="string" length="120" />
+    <property column="numero" name="numero" not-null="true" type="integer"/>
+    <property column="calle" length="120" name="calle" not-null="true" type="string"/>
+    <property column="piso" name="piso" type="integer"/>
+    <property column="departamento" length="120" name="departamento" type="string"/>
   </class>
 </hibernate-mapping>

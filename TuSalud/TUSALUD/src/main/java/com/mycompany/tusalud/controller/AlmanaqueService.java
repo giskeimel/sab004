@@ -28,7 +28,7 @@ public class AlmanaqueService {
         try{
             turno.setLibre(false);
             turno.setPaciente(tuSalud.getPaciente());
-            consultaTurno.guardarTurno(turno);
+            consultaTurno.asociarTurnoaPaciente(turno);
         }catch(BDException ex) {
             ex.printStackTrace();
         }

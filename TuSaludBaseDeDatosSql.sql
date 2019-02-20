@@ -195,7 +195,8 @@ CREATE TABLE IF NOT EXISTS `TuSalud`.`turno` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+alter table turno add column id_derivacion int;
+alter table turno add CONSTRAINT fk_turno_derivacion1 FOREIGN KEY (id_derivacion) REFERENCES TuSalud.derivacion (id);
 -- -----------------------------------------------------
 -- Table `TuSalud`.`derivacion`
 -- -----------------------------------------------------

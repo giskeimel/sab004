@@ -27,7 +27,7 @@ public class ConsultaEspecialidad {
             session = HibernateUtilities.getSession();
             session.beginTransaction();
 
-            Query query = session.createQuery("FROM Derivacion d WHERE d.paciente.id = :idPaciente");
+            Query query = session.createQuery("FROM Derivacion d WHERE d.paciente.id = :idPaciente AND aprobado = true");
             query.setParameter("idPaciente", paciente.getId());
             derivaciones = query.list();
 
@@ -63,7 +63,7 @@ public class ConsultaEspecialidad {
                 sb.append(" OR ");
             }
             sb.append("(e.id = ");
-            sb.append(derivacion.getEspecialidad().getIdEspecialidad());
+            sb.append(derivacion.getEspecialidad().getId());
             sb.append(")");
         }
 

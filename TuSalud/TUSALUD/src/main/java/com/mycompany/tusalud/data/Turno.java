@@ -12,23 +12,24 @@ import java.sql.Timestamp;
  */
 public class Turno {
     
-    private Integer idTurno; 
+    private Integer id; 
     private Timestamp fecha;
     private boolean libre;
     private Lugar lugar;
     private Especialidad especialidad;
     private Paciente paciente;
-  
+    private Derivacion derivacion;
+    
     public Turno(){
         
     }
 
-    public Integer getIdTurno() {
-        return idTurno;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdTurno(Integer idTurno) {
-        this.idTurno = idTurno;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     
@@ -71,7 +72,15 @@ public class Turno {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-  
+
+    public Derivacion getDerivacion() {
+        return derivacion;
+    }
+
+    public void setDerivacion(Derivacion derivacion) {
+        this.derivacion = derivacion;
+    }
+
     @Override
     public String toString() {
         return "Fecha : " + fecha ;

@@ -41,7 +41,7 @@ public class MenuService {
     
     public void crearCancelarTurnos() throws BDException{
         try{
-            List<Turno> turnosACancelar = consultaLugar.getListaTurnosDePaciente(tuSalud.getPaciente(), tuSalud.getPaciente().getLugarDeAtencion().getTurnos());
+            List<Turno> turnosACancelar = consultaLugar.getListaTurnosDePaciente(tuSalud.getPaciente().getId());
             tuSalud.getNavegacion().crearCancelarTurnos(turnosACancelar);
         } catch(BDException e) {
             Dialogo.mostrar("La lista esta vacia", "Mensaje");

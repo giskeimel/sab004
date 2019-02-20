@@ -40,10 +40,10 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="com.mycompany.tusalud.data.Especialidad" table="especialidad" >
-    <id name="idEspecialidad" column="id">
-        <generator class="increment" />
+  <class name="com.mycompany.tusalud.data.Especialidad" table="especialidad">
+    <id column="id" name="id">
+      <generator class="increment"/>
     </id>
-    <property name="nombre" column="nombre" type="string" length="120" not-null="true" />
+    <property column="nombre" length="120" name="nombre" not-null="true" type="string"/>
   </class>
 </hibernate-mapping>

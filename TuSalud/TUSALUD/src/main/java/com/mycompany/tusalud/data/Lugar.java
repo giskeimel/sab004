@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Lugar {
     
-   private Integer idLugar; 
+   private Integer id; 
    private String nombre;
    private Direccion direccion; 
    private List<Especialidad> especialidades;
@@ -26,12 +26,12 @@ public class Lugar {
         turnos = new ArrayList<>();
     }
     
-    public Integer getIdLugar() {
-        return idLugar;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdLugar(Integer idLugar) {
-        this.idLugar = idLugar;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public List<Turno> getTurnos() {
@@ -68,6 +68,6 @@ public class Lugar {
 
     @Override
     public String toString() {
-        return "Lugar{" + "idLugar=" + idLugar + ", nombre=" + nombre + ", direccion=" + direccion + '}';
+        return "Lugar{" + "idLugar=" + id + ", nombre=" + nombre + ", direccion=" + direccion + '}';
     }
 }

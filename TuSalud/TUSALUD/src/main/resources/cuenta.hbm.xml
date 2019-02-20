@@ -41,10 +41,10 @@ Contributor(s):
 -->
 <hibernate-mapping>
   <class name="com.mycompany.tusalud.data.Cuenta" table="cuenta">
-    <id name = "idCuenta"  column="id">
-        <generator class = "increment" />
+    <id column="id" name="id">
+      <generator class="increment"/>
     </id>
-    <property name = "usuario" column="usuario" type ="string" length="120" not-null= "true" />
-    <property name = "contraseña" column="contraseña" type ="string" length="120" not-null= "true" />
+    <property column="usuario" length="120" name="usuario" not-null="true" type="string"/>
+    <property column="contraseña" length="120" name="contraseña" not-null="true" type="string"/>
   </class>
 </hibernate-mapping>

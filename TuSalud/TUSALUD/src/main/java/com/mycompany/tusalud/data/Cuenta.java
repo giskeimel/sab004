@@ -11,7 +11,7 @@ package com.mycompany.tusalud.data;
  */
 public class Cuenta {
 
-    private Integer idCuenta = null;
+    private Integer id = null;
     private String usuario;
     private String contraseña;
 
@@ -23,12 +23,12 @@ public class Cuenta {
         this.contraseña = contraseña;
     }
     
-    public Integer getIdCuenta() {
-        return idCuenta;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCuenta(Integer idCuenta) {
-        this.idCuenta = idCuenta;
+    public void setId(Integer id) {
+        this.id = id;
     }
     
 

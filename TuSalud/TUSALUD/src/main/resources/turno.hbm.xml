@@ -41,13 +41,14 @@ Contributor(s):
 -->
 <hibernate-mapping>
   <class name="com.mycompany.tusalud.data.Turno" table="turno">
-    <id name = "idTurno"  column="id">
-        <generator class ="increment" />
+    <id column="id" name="id">
+      <generator class="increment"/>
     </id>
-    <property name="fecha" column="fecha" type ="timestamp" not-null= "true" />
-    <property name="libre" column="libre" type ="boolean" not-null= "true" />
-    <many-to-one name="lugar" class="com.mycompany.tusalud.data.Lugar" column="id_Lugar" lazy="false" />
-    <many-to-one name="especialidad" class="com.mycompany.tusalud.data.Especialidad" column="id_Especialidad" lazy="false" />
-    <many-to-one name="paciente" class="com.mycompany.tusalud.data.Paciente" column="id_Paciente" lazy="false" />
+    <property column="fecha" name="fecha" not-null="true" type="timestamp"/>
+    <property column="libre" name="libre" not-null="true" type="boolean"/>
+    <many-to-one class="com.mycompany.tusalud.data.Lugar" column="id_Lugar" lazy="false" name="lugar"/>
+    <many-to-one class="com.mycompany.tusalud.data.Especialidad" column="id_Especialidad" lazy="false" name="especialidad"/>
+    <many-to-one class="com.mycompany.tusalud.data.Paciente" column="id_Paciente" lazy="false" name="paciente"/>
+    <many-to-one class="com.mycompany.tusalud.data.Derivacion" column="id_Derivacion" lazy="false" name="derivacion"/>
   </class>
 </hibernate-mapping>

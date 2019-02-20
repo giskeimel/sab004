@@ -28,7 +28,7 @@ public class EspecialidadService {
     
     public void crearAlmanaque(String especialidad) throws BDException{
         try{
-            List<Turno> turnosLibres = consultaLugar.getListaDeTurnosLibres(especialidad, tuSalud.getPaciente().getLugarDeAtencion().getTurnos());
+            List<Turno> turnosLibres = consultaLugar.getListaDeTurnosLibres(especialidad, tuSalud.getPaciente().getLugarDeAtencion().getId());
             tuSalud.getNavegacion().crearAlmanaque(turnosLibres);
         } catch(BDException e) {
             Dialogo.mostrar("La lista esta vacia", "Mensaje");

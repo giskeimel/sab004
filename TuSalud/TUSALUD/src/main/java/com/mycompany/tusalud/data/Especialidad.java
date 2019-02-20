@@ -11,17 +11,17 @@ package com.mycompany.tusalud.data;
  */
 public class Especialidad {
     
-    private Integer idEspecialidad; 
+    private Integer id; 
     private String nombre;
     
     public Especialidad(){}
 
-    public Integer getIdEspecialidad() {
-        return idEspecialidad;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdEspecialidad(Integer idEspecialidad) {
-        this.idEspecialidad = idEspecialidad;
+    public void setId(Integer id) {
+        this.id = id;
     }
     
         

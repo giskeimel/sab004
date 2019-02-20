@@ -32,27 +32,15 @@ public class VistaSeleccionarEspecialidad extends javax.swing.JFrame {
     }
     
     private String[] getArrayEspecialidades() {
-        String[] especialidades;
-        
-        if (lista == null){
-            
-            especialidades = new String[1];
-            especialidades[0] = "De Familia";
-            
-            return especialidades;
-        }else{
-            
-            especialidades = new String[lista.size() + 1];
+        String[] especialidades = new String[lista.size()];
 
-            especialidades[0] = "De Familia";
+        for(int i=0; i<lista.size();i++) { 
 
-            for(int i=1; i<=lista.size();i++) { 
-
-                especialidades[i] = lista.get(i-1).getNombre();
-            }
-            return especialidades;
+            especialidades[i] = lista.get(i).getNombre();
         }
+        return especialidades;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
