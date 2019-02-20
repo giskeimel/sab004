@@ -12,7 +12,7 @@ import com.mycompany.tusalud.db.ConsultaLugar;
 import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.excepciones.LoginException;
 import com.mycompany.tusalud.init.TuSalud;
-import com.mycompany.tusalud.interfaces.Dialogo;
+import com.mycompany.tusalud.interfaces.MiDialogo;
 import java.util.List;
 
 /**
@@ -34,7 +34,7 @@ public class MenuService {
             List<Especialidad> lista = consultaEspecialidad.consultarEspecialidadAp(tuSalud.getPaciente());
             tuSalud.getNavegacion().crearSeleccionEspecialidad(lista);
         } catch(LoginException e) {
-            Dialogo.mostrar("La lista esta vacia", "Mensaje");
+            MiDialogo.mostrar("La lista esta vacia", "Mensaje");
             e.printStackTrace();
         }
     }    
@@ -44,7 +44,7 @@ public class MenuService {
             List<Turno> turnosACancelar = consultaLugar.getListaTurnosDePaciente(tuSalud.getPaciente().getId());
             tuSalud.getNavegacion().crearCancelarTurnos(turnosACancelar);
         } catch(BDException e) {
-            Dialogo.mostrar("La lista esta vacia", "Mensaje");
+            MiDialogo.mostrar("La lista esta vacia", "Mensaje");
             e.printStackTrace();
         }
     }

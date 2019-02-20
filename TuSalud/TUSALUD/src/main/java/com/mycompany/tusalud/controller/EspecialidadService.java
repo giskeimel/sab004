@@ -9,7 +9,7 @@ import com.mycompany.tusalud.data.Turno;
 import com.mycompany.tusalud.db.ConsultaLugar;
 import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.init.TuSalud;
-import com.mycompany.tusalud.interfaces.Dialogo;
+import com.mycompany.tusalud.interfaces.MiDialogo;
 import java.util.List;
 import javax.swing.JFrame;
 
@@ -31,7 +31,7 @@ public class EspecialidadService {
             List<Turno> turnosLibres = consultaLugar.getListaDeTurnosLibres(especialidad, tuSalud.getPaciente().getLugarDeAtencion().getId());
             tuSalud.getNavegacion().crearAlmanaque(turnosLibres);
         } catch(BDException e) {
-            Dialogo.mostrar("La lista esta vacia", "Mensaje");
+            MiDialogo.mostrar("La lista esta vacia", "Mensaje");
             e.printStackTrace();
         }
     }
