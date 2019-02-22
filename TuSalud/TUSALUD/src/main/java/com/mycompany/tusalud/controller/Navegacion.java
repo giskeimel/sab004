@@ -83,8 +83,9 @@ public class Navegacion {
     }
     
     public void registrarNuevaCuenta() {
-        vistaRegistrarse = new VistaRegistrarse(new AgregarCuentaService(tuSalud));        
-        login.setVisible(false);
+        
+        vistaRegistrarse = new VistaRegistrarse(new AgregarCuentaService(tuSalud), login);        
+    //    login.setVisible(false);
         vistaRegistrarse.mostrar();
         vistaRegistrarse = null;
     }

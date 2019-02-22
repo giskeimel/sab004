@@ -6,10 +6,8 @@
 package com.mycompany.tusalud.interfaces;
 
 import com.mycompany.tusalud.controller.LoginService;
-import com.mycompany.tusalud.data.Persona;
 import com.mycompany.tusalud.excepciones.LoginException;
 import javax.swing.JOptionPane;
-import org.hibernate.HibernateException;
 
 /**
  *
@@ -257,9 +255,6 @@ public class VistaLogin extends javax.swing.JFrame {
         } catch (LoginException ex) {
              JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }        
-        
-        
-        
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

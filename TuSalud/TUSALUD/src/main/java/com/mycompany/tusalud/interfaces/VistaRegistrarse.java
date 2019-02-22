@@ -6,12 +6,21 @@ package com.mycompany.tusalud.interfaces;
 
 import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.controller.AgregarCuentaService;
+import com.mycompany.tusalud.data.Lugar;
+import com.mycompany.tusalud.db.ConsultaLugar;
+import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.excepciones.TuSaludException;
 import java.awt.Dimension;
+import java.awt.Window;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 
 /**
  *
@@ -27,30 +36,45 @@ public class VistaRegistrarse {
     private javax.swing.JTextField txtNroHClinica;
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textDireccion;
-    private javax.swing.JTextField textnum;
     private javax.swing.JTextField textnumero;
     private javax.swing.JTextField  textPiso;
     private javax.swing.JTextField textDepto;
-    private JFrame ventana;
+    private JDialog ventana;
+    private Window ventanaAnterior;
+    private ConsultaLugar consulta = new ConsultaLugar();
+    private List<Lugar> lista;
+    private JComboBox jcLugares;
 
-    public VistaRegistrarse(AgregarCuentaService cuentaNueva) {
-        this.cuentaNueva = cuentaNueva;
-        initComponents();
+    public VistaRegistrarse(AgregarCuentaService cuentaNueva, Window ventanaAnterior) {
+        
+            this.cuentaNueva = cuentaNueva;
+            this.ventanaAnterior = ventanaAnterior;            
+            this.lista = consulta.getListaDeLugares();
+            initComponents();
+        
     }
 
     public void mostrar() {
         ventana.setVisible(true);
     }
-
+ 
     public void ocultar() {
         ventana.setVisible(false);
         ventana.dispose();
     }
 
     private void initComponents() {
-        ventana = new JFrame();
-
-        ventana.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+          if (ventanaAnterior != null) {
+              if (ventanaAnterior instanceof JDialog) {
+                ventana = new JDialog((JDialog)ventanaAnterior, true);
+            }   else {
+                ventana = new JDialog((JFrame)ventanaAnterior, true);
+            }            
+        } else {
+            ventana = new JDialog();
+        }
+                
+        ventana.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ventana.setPreferredSize(new Dimension(500, 500));
         ventana.pack();
         ventana.setLocationRelativeTo(null);
@@ -154,14 +178,14 @@ public class VistaRegistrarse {
         lblDepto.setText(" DpTo.");
         ventana.getContentPane().add(lblDepto); 
        
-        textNombre = new JTextField();
-        textNombre.setBounds(xComponente, 210, anchoEtiqueta, alto);
-        ventana.getContentPane().add(textNombre);
+        textDireccion = new JTextField();
+        textDireccion.setBounds(xComponente, 210, anchoEtiqueta, alto);
+        ventana.getContentPane().add(textDireccion);
       
         
-        textnum = new JTextField();
-        textnum.setBounds(xComponente+125, 210, 50, alto);
-        ventana.getContentPane().add(textnum);
+        textnumero = new JTextField();
+        textnumero .setBounds(xComponente+125, 210, 50, alto);
+        ventana.getContentPane().add(textnumero);
         
        
 
@@ -177,7 +201,7 @@ public class VistaRegistrarse {
         /////////////////botones registro y salida//////////////////////////////////////
         JButton btRegistrar = new JButton();
         btRegistrar.setText("Registrarse");
-        btRegistrar.setBounds(xComponente, 300, anchoEtiqueta, alto);
+        btRegistrar.setBounds(xComponente, 430, anchoEtiqueta, alto);
         btRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrar();
@@ -200,38 +224,68 @@ public class VistaRegistrarse {
         lblMensaje.setText("Dirijase al centro de salud mas cercano para verificar y completar datos");
         ventana.getContentPane().add(lblMensaje);
         /////////////////botones registro y salida//////////////////////////////////////
-    }
+        //////////////////Combo lugatres///////////////////////////////////////////////
+        JLabel lbllugares = new JLabel();
+        lbllugares.setBounds(xEtiqueta, 240, 200, alto);
+        lbllugares.setText("Seleccione Lugar de Atencion");
+        ventana.getContentPane().add(lbllugares);
+        
+        jcLugares= new JComboBox(getArrayLugares());
+        jcLugares.setBounds(xComponente,270,anchoEtiqueta,alto);
+        ventana.getContentPane().add(jcLugares);
+        }
 
     private void registrar() {
         //Aca se hace la llamada a registrse.
-        String nombre, apellido, usuario, contraceña,email;
+        String nombre, apellido, usuario, contraceña,email,calle,depto;
 
-        int numHistClinica;
+        int numHistClinica,numero,piso;
         try {
             numHistClinica = new Integer(txtNroHClinica.getText());
         } catch (Exception e) {
             MiDialogo.mostrar("Error", "La historia clinica debe ser un valor");
             return;
         }
-
+         try {
+            numero = new Integer(textnumero.getText());
+            piso=new Integer(textPiso.getText());
+        } catch (Exception e) {
+            MiDialogo.mostrar("Error", "Debe ser un valor numerico");
+            return;
+        }
         nombre = textNombre.getText();
         apellido = textApellido.getText();
         usuario = txtUsuario.getText();
         contraceña = textContraceña.getText();
         email=textEmail.getText();
+        calle=textDireccion.getText();
+        depto=textDepto.getText();        
+        Lugar lugar = getLugarSeleccionado();
         
         Paciente paciente = null;
         try {
-            paciente = cuentaNueva.AgregarCuentaPaciente(nombre, apellido, numHistClinica, usuario, contraceña, email);
+            paciente = cuentaNueva.AgregarCuentaPaciente(nombre, apellido, numHistClinica, usuario, contraceña, email, calle, numero, piso, depto, lugar);
         } catch (TuSaludException ex) {
             MiDialogo.mostrar(ex, "Error al crear el Paciente");
             return;
         }
         MiDialogo.mostrar("Su cuenta fue creada con Exito", "Bienvenido!!!");
         cuentaNueva.volverALogin(this);
+    }  
+    
+    private String[] getArrayLugares() {
+        String[] lugares = new String[lista.size()];
+        for(int i=0; i<lista.size();i++) { 
+            lugares[i] = lista.get(i).getNombre();
+        }
+        return lugares;
     }
-
+    
     private void volverALogin() {
         cuentaNueva.volverALogin(this);
+    }
+
+    private Lugar getLugarSeleccionado() {
+        return lista.get(this.jcLugares.getSelectedIndex());
     }
 }

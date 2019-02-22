@@ -48,7 +48,7 @@ Contributor(s):
     <property name="apellido" column="apellido" type="string" length="120" not-null="true" />
     <property name="telefono" column="telefono" type="long"  not-null="true" />
     <property name="email" column="email" type="string" length="120" not-null= "true" />
-    <many-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" column="id_Direccion" lazy="false" />
+    <many-to-one name="direccion" class="com.mycompany.tusalud.data.Direccion" column="id_Direccion" lazy="false"/>
     <property name="historia_clinica" column="historia_clinica" type ="integer" not-null="true" /> 
     <many-to-one name="lugarDeAtencion" class="com.mycompany.tusalud.data.Lugar" column="id_Lugar" lazy="false" />
     <many-to-one name="cuenta" class="com.mycompany.tusalud.data.Cuenta" column="id_Cuenta" lazy="false" />

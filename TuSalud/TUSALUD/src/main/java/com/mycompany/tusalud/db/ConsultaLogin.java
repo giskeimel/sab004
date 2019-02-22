@@ -6,7 +6,9 @@
 package com.mycompany.tusalud.db;
 
 import com.mycompany.tusalud.HibernateClase.HibernateUtilities;
+import com.mycompany.tusalud.data.Derivacion;
 import com.mycompany.tusalud.data.Empleado;
+import com.mycompany.tusalud.data.Especialidad;
 import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.data.Persona;
 import com.mycompany.tusalud.excepciones.LoginException;
@@ -22,14 +24,15 @@ public class ConsultaLogin {
     public Persona login(String usuario, String password) throws LoginException {
         Persona persona = null;
         Session session = null;
+       
+        
         try {
             session = HibernateUtilities.getSession();
             session.beginTransaction();
-
             Query query = session.createQuery("FROM Paciente p WHERE p.cuenta.usuario = :usuario AND p.cuenta.contraseña = :contraseña");
             query.setParameter("usuario", usuario);
             query.setParameter("contraseña", password);
-            persona = (Paciente) query.uniqueResult();             
+            persona = (Paciente) query.uniqueResult();
             session.getTransaction().commit();
             
             if (persona == null) {

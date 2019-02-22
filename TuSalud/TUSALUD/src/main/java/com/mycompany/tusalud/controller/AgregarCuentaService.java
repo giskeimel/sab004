@@ -12,6 +12,7 @@ import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.db.CargarEmpleado;
 import com.mycompany.tusalud.db.ConsultaPaciente;
 import com.mycompany.tusalud.db.ConsultaCuenta;
+import com.mycompany.tusalud.db.ConsultaDireccion;
 import com.mycompany.tusalud.excepciones.TuSaludException;
 import com.mycompany.tusalud.init.TuSalud;
 import com.mycompany.tusalud.interfaces.VistaRegistrarse;
@@ -32,12 +33,19 @@ public class AgregarCuentaService {
     }
     
     public Paciente AgregarCuentaPaciente(String nombre, String apellido,
-             int historia_clinica,String usuario, String contaceña,String email) throws TuSaludException {
+             int historia_clinica,String usuario, String contaceña,String email,
+             String calle,int numero,int piso,String depto, Lugar lugar) throws TuSaludException {
+      
+        
         Cuenta cuenta = new Cuenta();
         Paciente paciente = new Paciente();
         this.tuSalud = tuSalud;
+        
+        ConsultaDireccion consultaDireccion = new ConsultaDireccion();        
+        Direccion direccion = consultaDireccion.crearDireccion(calle, numero, piso, depto);        
+        
         cuenta = cuentaNueva.crearCuenta(usuario, contaceña);
-        paciente = pacienteNuevo.crearPaciente(cuenta, nombre, apellido, historia_clinica, email);
+        paciente = pacienteNuevo.crearPaciente(cuenta, nombre, apellido, historia_clinica, email,direccion,lugar);
         return paciente;
     }
 

@@ -128,4 +128,30 @@ public class ConsultaLugar {
         }
         return turnosLibres;
     }
+    
+    public List<Lugar> getListaDeLugares() {
+        List<Lugar> lugares = null;
+        
+        Session session = null;
+        try{
+            
+            session = HibernateUtilities.getSession();
+            session.beginTransaction();
+
+            Query query = session.createQuery("FROM Lugar  ");
+            lugares = (List<Lugar>) query.list();
+                        
+            if (lugares.isEmpty()){
+                //throw new BDException("La lista esta vacia");
+            }
+            
+        } catch (HibernateException e) {
+            e.printStackTrace();
+    //        throw new BDException("Error al pedir la lista Lugares", e);
+        } finally {
+            if (session.isOpen())
+                session.close();
+        }
+        return lugares;
+    }
 }
