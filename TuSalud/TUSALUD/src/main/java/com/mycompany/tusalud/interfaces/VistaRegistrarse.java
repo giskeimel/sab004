@@ -243,7 +243,7 @@ public class VistaRegistrarse {
         try {
             numHistClinica = new Integer(txtNroHClinica.getText());
         } catch (Exception e) {
-            MiDialogo.mostrar("Error", "La historia clinica debe ser un valor");
+            MiDialogo.mostrar("Error", "La historia clinica debe ser un valor numerico");
             return;
         }
          try {

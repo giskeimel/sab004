@@ -9,6 +9,7 @@ import com.mycompany.tusalud.data.Derivacion;
 import com.mycompany.tusalud.data.Especialidad;
 import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.excepciones.LoginException;
+import com.mycompany.tusalud.interfaces.MiDialogo;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,7 +19,28 @@ import org.hibernate.Session;
  * @author Nati
  */
 public class ConsultaEspecialidad {
-    
+     public Especialidad consultarDeFamil(int id) throws LoginException {
+        Especialidad deFam=null;
+        Session session = null;
+        try {
+            session = HibernateUtilities.getSession();
+            session.beginTransaction();
+
+            Query query = session.createQuery("FROM Especialidad e WHERE e.id = :id");
+            query.setParameter("id",id);
+            deFam = (Especialidad) query.uniqueResult();
+
+            session.getTransaction().commit();
+        }catch(Exception e){
+            MiDialogo.mostrar(e, "no se encuentra la especialidad");
+        } finally {
+            if (session.isOpen()) {
+                session.close();
+            }
+        }
+
+        return deFam;
+    }
       
     public List<Derivacion> consultaDerivacion(Paciente paciente) throws LoginException {
         List<Derivacion> derivaciones = null;

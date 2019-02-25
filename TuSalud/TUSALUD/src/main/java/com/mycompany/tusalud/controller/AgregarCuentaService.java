@@ -5,17 +5,22 @@
 package com.mycompany.tusalud.controller;
 
 import com.mycompany.tusalud.data.Cuenta;
+import com.mycompany.tusalud.data.Derivacion;
 import com.mycompany.tusalud.data.Direccion;
 import com.mycompany.tusalud.data.Empleado;
+import com.mycompany.tusalud.data.Especialidad;
 import com.mycompany.tusalud.data.Lugar;
 import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.db.CargarEmpleado;
 import com.mycompany.tusalud.db.ConsultaPaciente;
 import com.mycompany.tusalud.db.ConsultaCuenta;
+import com.mycompany.tusalud.db.ConsultaDerivacion;
 import com.mycompany.tusalud.db.ConsultaDireccion;
+import com.mycompany.tusalud.db.ConsultaEspecialidad;
 import com.mycompany.tusalud.excepciones.TuSaludException;
 import com.mycompany.tusalud.init.TuSalud;
 import com.mycompany.tusalud.interfaces.VistaRegistrarse;
+import java.util.Date;
 
 /**
  *
@@ -46,7 +51,23 @@ public class AgregarCuentaService {
         
         cuenta = cuentaNueva.crearCuenta(usuario, contaceña);
         paciente = pacienteNuevo.crearPaciente(cuenta, nombre, apellido, historia_clinica, email,direccion,lugar);
+        
+        ConsultaEspecialidad consultaEspecialidad=new ConsultaEspecialidad();
+        Especialidad especialidad = new Especialidad();
+        int id = 1;
+        especialidad=consultaEspecialidad.consultarDeFamil(id);
+        
+        Date fecha = new Date();
+        Derivacion derivacion = new Derivacion();
+        derivacion.setAprobado(true);
+        derivacion.setPaciente(paciente);
+        derivacion.setEspecialidad(especialidad);
+        derivacion.setFecha(fecha);
+        ConsultaDerivacion derivFamilia = new ConsultaDerivacion();
+        derivFamilia.guardarDerivacionEnBD(derivacion);
+        
         return paciente;
+        
     }
 
     public Empleado AgregarCuentaEmpleado( String nombre, String apellido, long telefono,

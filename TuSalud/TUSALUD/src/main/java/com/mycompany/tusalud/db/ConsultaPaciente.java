@@ -35,22 +35,9 @@ public class ConsultaPaciente {
         paciente.setObservaciones(email);
         paciente.setLugarDeAtencion(lugar);
 
-        Session session = null;
-
-        Especialidad especialidad = new Especialidad();
-        int id = 1;
-        especialidad.setId(id);
-        String nom = "De familia";
-        especialidad.setNombre(nom);
         
-        Date fecha = new Date();
-        Derivacion derivacion = null;
-        derivacion.setAprobado(true);
-        derivacion.setPaciente(paciente);
-        derivacion.setEspecialidad(especialidad);
-        derivacion.setFecha(fecha);
-        ConsultaDerivacion derivFamilia = new ConsultaDerivacion();
-        derivFamilia.guardarDerivacionEnBD(derivacion);
+       
+        Session session = null;
         try {
             session = HibernateUtilities.getSession();
             session.beginTransaction();
@@ -64,6 +51,8 @@ public class ConsultaPaciente {
                 session.close();
             }
         }
+        
+        
         return paciente;
     }
 }

@@ -20,10 +20,11 @@ public class ConsultaDerivacion {
     public void guardarDerivacionEnBD(Derivacion derivacion) throws BDException {
         Session session = null;
         try {
-            session = HibernateUtilities.getSession();
+            session =  HibernateUtilities.getSession();
             session.beginTransaction();
             
             session.saveOrUpdate(derivacion);
+            //ver por que me salta al catch
             
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -34,7 +35,7 @@ public class ConsultaDerivacion {
             }
         }
     }
-    
+   
     public Derivacion getDerivacion(Integer idPaciente, Integer idEspecialidad) throws BDException {
         Derivacion derivacion = null;
         Session session = null;
