@@ -6,6 +6,7 @@
 package com.mycompany.tusalud.data;
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 
 /**
  * * @author Nati
@@ -35,6 +36,10 @@ public class Turno {
     
     public Timestamp getFecha() {
         return fecha;
+    }
+    
+    public LocalTime getHora(){
+        return fecha.toLocalDateTime().toLocalTime();
     }
 
     public boolean isLibre() {

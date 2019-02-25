@@ -13,8 +13,6 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
  *
@@ -24,15 +22,20 @@ public class VistaCancelarTurnos extends javax.swing.JFrame {
     
     CancelarTurnosService cancelarTurnosService;
     private Map<Integer, Turno> tablaBotonTurno = new HashMap<>();
-
+    List<Turno> lista;
+    
     private ActionListener listenerBoton = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            JButton boton = (JButton) ae.getSource();
-            Turno turno = tablaBotonTurno.get(boton.hashCode());
+            Turno turno = tablaBotonTurno.get(jTable.getSelectedRow());
             try {
-                cancelarTurnosService.cancelarTurno(turno);
-                cerrar();
+                if(turno != null){
+                    cancelarTurnosService.cancelarTurno(turno);
+                    cerrar();
+                }
+                else{
+                    System.out.println("No ha seleccionado turno a cancelar");
+                }
             } catch (BDException ex) {
                 ex.printStackTrace();
             }
@@ -41,150 +44,103 @@ public class VistaCancelarTurnos extends javax.swing.JFrame {
     
     public VistaCancelarTurnos(CancelarTurnosService cancelarTurnosService, List<Turno> lista) {
         this.cancelarTurnosService = cancelarTurnosService;
+        this.lista = lista;
         initComponents();
-        generarBotones(lista);
         this.setLocationRelativeTo(null);
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButtonCancelar = new javax.swing.JButton();
+        jButtonVolverAMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jTable = new javax.swing.JTable();
+        jButtonCancelarTurno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jButtonCancelar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonCancelar.setText("Cancelar Turno");
-        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVolverAMenu.setText("Volver a Menu");
+        jButtonVolverAMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarActionPerformed(evt);
+                jButtonVolverAMenuActionPerformed(evt);
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            getMatrizObject(getArregloString().length),
+            getArregloString()
+        ));
+        jScrollPane1.setViewportView(jTable);
 
-            },
-            new String [] {
-                "Turno", "Especialidad", "Fecha", "Hora"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        jPanel2.setBackground(new java.awt.Color(0, 153, 0));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(jButtonCancelar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(88, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jButtonCancelar)
-                .addGap(32, 32, 32))
-        );
+        jButtonCancelarTurno.setText("Cancelar Turno");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonCancelarTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonVolverAMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelarTurno)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonVolverAMenu))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+    private void jButtonVolverAMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverAMenuActionPerformed
         // TODO add your handling code here:
         cerrar();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+    }//GEN-LAST:event_jButtonVolverAMenuActionPerformed
     
-    private void generarBotones(List<Turno> lista){
+    private Object[][] getMatrizObject(Integer tamaño){
+        Object[][] matriz = new Object[lista.size()][tamaño];
         
-        int xl = 10;
-        int y = 10;
-        int anchoBoton = 150;
-        int anchoLabel = 130;
-        int altoBoton = 20;
-        int altoLabel = 20;
+        for(int fila=0; fila<lista.size(); fila++){
+            
+            matriz[fila][0] = lista.get(fila).getFecha().toLocalDateTime().toLocalDate();
+            matriz[fila][1] = lista.get(fila).getHora();
+            matriz[fila][2] = lista.get(fila).getEspecialidad().getNombre();
+            
+            tablaBotonTurno.put(fila, lista.get(fila));
+        }
         
-        for(Turno objetoT:lista) {
-
-            JLabel horario = new JLabel(objetoT.toString());
-            horario.setBounds(xl , y, anchoLabel, altoLabel);
-            
-            JButton boton = new JButton("Cancelar turno");
-            boton.setBounds(xl + anchoLabel + 10, y, anchoBoton, altoBoton);
-            tablaBotonTurno.put(boton.hashCode(), objetoT);
-            boton.addActionListener(listenerBoton);
-            this.add(boton);
-            this.add(horario);            
-            
-            y = y + 50;
-        }    
+        jButtonCancelarTurno.addActionListener(listenerBoton);
+        
+        return matriz;
+    }
+    
+    private String[] getArregloString(){
+        String[] arreglo = {"Fecha", "Hora", "Especialidad"};
+        
+        return arreglo;
     }
     
     public void cerrar() {
         cancelarTurnosService.volverAMenu(this);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jButtonCancelarTurno;
+    private javax.swing.JButton jButtonVolverAMenu;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,9 +6,11 @@
 package com.mycompany.tusalud.controller;
 
 import com.mycompany.tusalud.data.Especialidad;
+import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.data.Turno;
 import com.mycompany.tusalud.db.ConsultaEspecialidad;
 import com.mycompany.tusalud.db.ConsultaLugar;
+import com.mycompany.tusalud.db.ConsultaNotificacion;
 import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.excepciones.LoginException;
 import com.mycompany.tusalud.init.TuSalud;
@@ -23,6 +25,7 @@ public class MenuService {
     
     private ConsultaEspecialidad consultaEspecialidad = new ConsultaEspecialidad();
     private ConsultaLugar consultaLugar = new ConsultaLugar();
+    private ConsultaNotificacion consultaNotificacion = new ConsultaNotificacion();
     private final TuSalud tuSalud;
     
     public MenuService(TuSalud tuSalud){
@@ -37,7 +40,15 @@ public class MenuService {
             MiDialogo.mostrar("La lista esta vacia", "Mensaje");
             e.printStackTrace();
         }
-    }    
+    }
+    
+    public void crearNotificaciones(){
+        List<Object[]> lista = consultaNotificacion.getNotificacion(tuSalud.getPaciente().getId(), tuSalud.getPaciente().getLugarDeAtencion().getId());
+        if(lista == null){
+            System.out.println("Lista null");
+        }
+        tuSalud.getNavegacion().crearNotificaciones(lista);
+    }
     
     public void crearCancelarTurnos() throws BDException{
         try{
@@ -49,7 +60,12 @@ public class MenuService {
         }
     }
     
+    public Paciente getUsuario(){
+        return tuSalud.getPaciente();
+    }
+    
     public void cerrarSesion(){
+        tuSalud.setPersonaLogueada(null);
         tuSalud.getNavegacion().cerrarSesion();
     }
 }

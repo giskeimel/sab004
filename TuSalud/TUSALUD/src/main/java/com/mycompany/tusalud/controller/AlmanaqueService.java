@@ -5,7 +5,9 @@
  */
 package com.mycompany.tusalud.controller;
 
+import com.mycompany.tusalud.data.Derivacion;
 import com.mycompany.tusalud.data.Turno;
+import com.mycompany.tusalud.db.ConsultaDerivacion;
 import com.mycompany.tusalud.db.ConsultaTurno;
 import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.init.TuSalud;
@@ -17,6 +19,7 @@ import javax.swing.JFrame;
  */
 public class AlmanaqueService {
     private ConsultaTurno consultaTurno = new ConsultaTurno();
+    private ConsultaDerivacion consultaDerivacion = new ConsultaDerivacion();
     private final TuSalud tuSalud;
     
     public AlmanaqueService(TuSalud tuSalud) {
@@ -24,11 +27,16 @@ public class AlmanaqueService {
     }
     
     public void guardarTurno(Turno turno) throws BDException{
-        
         try{
+            Derivacion derivacion = consultaDerivacion.getDerivacion(tuSalud.getPaciente().getId(), turno.getEspecialidad().getId());
+            
+            derivacion.setAprobado(false);
+            consultaDerivacion.guardarDerivacionEnBD(derivacion);
+            
+            turno.setDerivacion(derivacion);
             turno.setLibre(false);
             turno.setPaciente(tuSalud.getPaciente());
-            consultaTurno.asociarTurnoaPaciente(turno);
+            consultaTurno.guardarTurnoEnBD(turno);
         }catch(BDException ex) {
             ex.printStackTrace();
         }

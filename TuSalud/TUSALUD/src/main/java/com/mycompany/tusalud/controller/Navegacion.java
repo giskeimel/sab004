@@ -12,7 +12,9 @@ import com.mycompany.tusalud.interfaces.VistaLogin;
 import com.mycompany.tusalud.interfaces.VistaMenu;
 import com.mycompany.tusalud.interfaces.VistaSeleccionarEspecialidad;
 import com.mycompany.tusalud.interfaces.VistaAlmanaque;
+import com.mycompany.tusalud.interfaces.VistaAlmanaque2;
 import com.mycompany.tusalud.interfaces.VistaCancelarTurnos;
+import com.mycompany.tusalud.interfaces.VistaNotificacion;
 import com.mycompany.tusalud.interfaces.VistaRegistrarse;
 import java.util.List;
 import javax.swing.JFrame;
@@ -29,9 +31,10 @@ public class Navegacion {
     VistaLogin login;
     VistaMenu menu;
     VistaSeleccionarEspecialidad especialidad;
-    VistaAlmanaque almanaque;
+    VistaAlmanaque2 almanaque;
     VistaCancelarTurnos cancelarTurnos;
     VistaRegistrarse vistaRegistrarse;
+    VistaNotificacion notificacion;
     
     public Navegacion(TuSalud tuSalud) {
         this.tuSalud = tuSalud;
@@ -60,10 +63,17 @@ public class Navegacion {
     }
     
     public void crearAlmanaque(List<Turno> lista){
-        almanaque = new VistaAlmanaque(new AlmanaqueService(tuSalud), lista);
+        almanaque = new VistaAlmanaque2(new AlmanaqueService(tuSalud), lista);
         
         especialidad.dispose();
         almanaque.setVisible(true);
+    }
+    
+    public void crearNotificaciones(List<Object[]> lista){
+        notificacion = new VistaNotificacion(new NotificacionService(tuSalud), lista);
+        
+        menu.setVisible(false);
+        notificacion.setVisible(true);
     }
     
     public void crearCancelarTurnos(List<Turno> lista){
@@ -79,6 +89,7 @@ public class Navegacion {
     
     public void cerrarSesion(){
         menu.dispose();
+        menu = null;
         login.setVisible(true);
     }
     

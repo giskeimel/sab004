@@ -5,7 +5,9 @@
  */
 package com.mycompany.tusalud.controller;
 
+import com.mycompany.tusalud.data.Derivacion;
 import com.mycompany.tusalud.data.Turno;
+import com.mycompany.tusalud.db.ConsultaDerivacion;
 import com.mycompany.tusalud.db.ConsultaTurno;
 import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.init.TuSalud;
@@ -19,6 +21,7 @@ public class CancelarTurnosService {
     
     private final TuSalud tuSalud;
     private ConsultaTurno consultaTurno = new ConsultaTurno();
+    private ConsultaDerivacion consultaDerivacion = new ConsultaDerivacion();
     
     public CancelarTurnosService(TuSalud tuSalud){
         this.tuSalud = tuSalud;
@@ -26,7 +29,15 @@ public class CancelarTurnosService {
     
     public void cancelarTurno(Turno turno) throws BDException{
         try{
-            consultaTurno.cancelarTurno(turno);
+            Derivacion derivacion = consultaDerivacion.getDerivacion(tuSalud.getPaciente().getId(), turno.getEspecialidad().getId());
+            
+            derivacion.setAprobado(true);
+            consultaDerivacion.guardarDerivacionEnBD(derivacion);
+            
+            turno.setDerivacion(null);
+            turno.setLibre(true);
+            turno.setPaciente(null);
+            consultaTurno.guardarTurnoEnBD(turno);
         }catch(BDException ex) {
             ex.printStackTrace();
         }

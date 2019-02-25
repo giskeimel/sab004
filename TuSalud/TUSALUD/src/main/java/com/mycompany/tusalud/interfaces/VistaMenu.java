@@ -6,10 +6,10 @@
 package com.mycompany.tusalud.interfaces;
 
 import com.mycompany.tusalud.controller.MenuService;
+import com.mycompany.tusalud.data.Paciente;
 import com.mycompany.tusalud.excepciones.BDException;
 import com.mycompany.tusalud.excepciones.LoginException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDate;
 
 /**
  *
@@ -86,9 +86,9 @@ public class VistaMenu extends javax.swing.JFrame {
         jPanelSuperior.setBackground(new java.awt.Color(238, 112, 82));
 
         jLabelNombreUsuario.setBackground(new java.awt.Color(255, 102, 0));
-        jLabelNombreUsuario.setText("Nombre");
+        jLabelNombreUsuario.setText("Usuario: " + getNombreDeUsuario());
 
-        jLabelFecha.setText("Fecha");
+        jLabelFecha.setText(getFechaDeHoy());
 
         javax.swing.GroupLayout jPanelSuperiorLayout = new javax.swing.GroupLayout(jPanelSuperior);
         jPanelSuperior.setLayout(jPanelSuperiorLayout);
@@ -97,7 +97,7 @@ public class VistaMenu extends javax.swing.JFrame {
             .addGroup(jPanelSuperiorLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabelNombreUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 466, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
                 .addComponent(jLabelFecha)
                 .addContainerGap())
         );
@@ -189,9 +189,19 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonTurnosAdquiridosActionPerformed
 
     private void jButtonNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNotificacionesActionPerformed
-        // TODO add your handling code here:
+        menuService.crearNotificaciones();
     }//GEN-LAST:event_jButtonNotificacionesActionPerformed
 
+    public String getFechaDeHoy(){
+        LocalDate fechaDeHoy = LocalDate.now();
+        return fechaDeHoy.toString();
+    }
+    
+    public String getNombreDeUsuario(){
+        Paciente paciente = menuService.getUsuario();
+        return paciente.getNombre() + " " + paciente.getApellido();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrarSesion;
     private javax.swing.JButton jButtonNotificaciones;

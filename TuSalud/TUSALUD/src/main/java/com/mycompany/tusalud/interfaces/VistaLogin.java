@@ -117,7 +117,7 @@ public class VistaLogin extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
         jButtonRegistro.setForeground(new java.awt.Color(238, 112, 82));
-        jButtonRegistro.setText("Resgistrate");
+        jButtonRegistro.setText("Registrate");
         jButtonRegistro.setBorder(null);
         jButtonRegistro.setContentAreaFilled(false);
         jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
